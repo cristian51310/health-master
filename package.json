@@ -3,15 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "repository": "https://tailadmin.com/",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
-  },
-  "author": {
-    "name": "TailAdmin",
-    "email": "hello@tailadmin.com",
-    "url": "https://tailadmin.com"
   },
   "dependencies": {
     "apexcharts": "^3.37.0",
@@ -21,6 +17,7 @@
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
     "react-router-dom": "^6.8.1",
     "sort-by": "^1.2.0"
   },

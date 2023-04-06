@@ -1,21 +1,11 @@
 import React from 'react';
 import DefaultLayout from '../../layout/DefaultLayout';
-import Breadcrumb from '../../components/Breadcrumb';
-import SwitcherOne from '../../components/SwitcherOne';
-import SwitcherTwo from '../../components/SwitcherTwo';
-import SwitcherFour from '../../components/SwitcherFour';
 import SwitcherThree from '../../components/SwitcherThree';
-import CheckboxOne from '../../components/CheckboxOne';
 import CheckboxTwo from '../../components/CheckboxTwo';
-import CheckboxThree from '../../components/CheckboxThree';
-import CheckboxFour from '../../components/CheckboxFour';
-import CheckboxFive from '../../components/CheckboxFive';
 
 const FormElements = () => {
   return (
     <DefaultLayout>
-      <Breadcrumb pageName='FormElements' />
-
       <div className='grid grid-cols-1 gap-9 sm:grid-cols-2'>
         <div className='flex flex-col gap-9'>
           {/* <!-- Input Fields --> */}
@@ -36,29 +26,6 @@ const FormElements = () => {
                   className='w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
                 />
               </div>
-
-              <div>
-                <label className='mb-3 block text-black dark:text-white'>
-                  Active Input
-                </label>
-                <input
-                  type='text'
-                  placeholder='Active Input'
-                  className='w-full rounded-lg border-[1.5px] border-primary bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input'
-                />
-              </div>
-
-              <div>
-                <label className='mb-3 block font-medium text-black dark:text-white'>
-                  Disabled label
-                </label>
-                <input
-                  type='text'
-                  placeholder='Disabled label'
-                  disabled=''
-                  className='w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:disabled:bg-black'
-                />
-              </div>
             </div>
           </div>
 
@@ -70,10 +37,9 @@ const FormElements = () => {
               </h3>
             </div>
             <div className='flex flex-col gap-5.5 p-6.5'>
-              <SwitcherOne />
-              <SwitcherTwo />
+
               <SwitcherThree />
-              <SwitcherFour />
+
             </div>
           </div>
 
@@ -112,32 +78,6 @@ const FormElements = () => {
                 </div>
               </div>
 
-              <div>
-                <label className='mb-3 block text-black dark:text-white'>
-                  Select date
-                </label>
-                <div className='relative'>
-                  <input
-                    type='date'
-                    className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-                  />
-
-                  <span className='absolute right-0.5 top-0.5 block rounded-tr rounded-br bg-white p-3.5 dark:bg-form-input'>
-                    <svg
-                      width='18'
-                      height='18'
-                      viewBox='0 0 18 18'
-                      fill='none'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path
-                        d='M9.0002 12.825C8.83145 12.825 8.69082 12.7688 8.5502 12.6563L2.08145 6.30002C1.82832 6.0469 1.82832 5.65315 2.08145 5.40002C2.33457 5.1469 2.72832 5.1469 2.98145 5.40002L9.0002 11.2781L15.0189 5.34377C15.2721 5.09065 15.6658 5.09065 15.9189 5.34377C16.1721 5.5969 16.1721 5.99065 15.9189 6.24377L9.45019 12.6C9.30957 12.7406 9.16895 12.825 9.0002 12.825Z'
-                        fill='#64748B'
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -159,15 +99,6 @@ const FormElements = () => {
                 />
               </div>
 
-              <div>
-                <label className='mb-3 block text-black dark:text-white'>
-                  Attach file
-                </label>
-                <input
-                  type='file'
-                  className='w-full rounded-md border border-stroke p-3 outline-none transition file:mr-4 file:rounded file:border-[0.5px] file:border-stroke dark:file:border-strokedark file:bg-[#EEEEEE] dark:file:bg-white/30 dark:file:text-white file:py-1 file:px-2.5 file:text-sm file:font-medium focus:border-primary file:focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input'
-                />
-              </div>
             </div>
           </div>
         </div>
@@ -192,28 +123,6 @@ const FormElements = () => {
                 ></textarea>
               </div>
 
-              <div>
-                <label className='mb-3 block text-black dark:text-white'>
-                  Active textarea
-                </label>
-                <textarea
-                  rows='6'
-                  placeholder='Active textarea'
-                  className='w-full rounded-lg border-[1.5px] border-primary bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input'
-                ></textarea>
-              </div>
-
-              <div>
-                <label className='mb-3 block text-black dark:text-white'>
-                  Disabled textarea
-                </label>
-                <textarea
-                  rows='6'
-                  disabled=''
-                  placeholder='Disabled textarea'
-                  className='w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:disabled:bg-black'
-                ></textarea>
-              </div>
             </div>
           </div>
 
@@ -225,11 +134,7 @@ const FormElements = () => {
               </h3>
             </div>
             <div className='flex flex-col gap-5.5 p-6.5'>
-              <CheckboxOne />
               <CheckboxTwo />
-              <CheckboxThree />
-              <CheckboxFour />
-              <CheckboxFive />
             </div>
           </div>
 
@@ -302,79 +207,6 @@ const FormElements = () => {
                 </div>
               </div>
 
-              <div>
-                <label className='mb-3 block text-black dark:text-white'>
-                  Multiselect Dropdown
-                </label>
-                <div className='relative z-20 w-full rounded border border-stroke p-1.5 pr-8 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input'>
-                  <div className='flex flex-wrap items-center'>
-                    <span className='m-1.5 flex items-center justify-center rounded border-[.5px] border-stroke dark:border-strokedark bg-gray dark:bg-white/30 py-1.5 px-2.5 text-sm font-medium'>
-                      Design
-                      <span className='cursor-pointer pl-2 hover:text-danger'>
-                        <svg
-                          width='12'
-                          height='12'
-                          viewBox='0 0 12 12'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            clipRule='evenodd'
-                            d='M9.35355 3.35355C9.54882 3.15829 9.54882 2.84171 9.35355 2.64645C9.15829 2.45118 8.84171 2.45118 8.64645 2.64645L6 5.29289L3.35355 2.64645C3.15829 2.45118 2.84171 2.45118 2.64645 2.64645C2.45118 2.84171 2.45118 3.15829 2.64645 3.35355L5.29289 6L2.64645 8.64645C2.45118 8.84171 2.45118 9.15829 2.64645 9.35355C2.84171 9.54882 3.15829 9.54882 3.35355 9.35355L6 6.70711L8.64645 9.35355C8.84171 9.54882 9.15829 9.54882 9.35355 9.35355C9.54882 9.15829 9.54882 8.84171 9.35355 8.64645L6.70711 6L9.35355 3.35355Z'
-                            fill='currentColor'
-                          ></path>
-                        </svg>
-                      </span>
-                    </span>
-                    <span className='m-1.5 flex items-center justify-center rounded border-[.5px] border-stroke dark:border-strokedark bg-gray dark:bg-white/30 py-1.5 px-2.5 text-sm font-medium'>
-                      Development
-                      <span className='cursor-pointer pl-2 hover:text-danger'>
-                        <svg
-                          width='12'
-                          height='12'
-                          viewBox='0 0 12 12'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            clipRule='evenodd'
-                            d='M9.35355 3.35355C9.54882 3.15829 9.54882 2.84171 9.35355 2.64645C9.15829 2.45118 8.84171 2.45118 8.64645 2.64645L6 5.29289L3.35355 2.64645C3.15829 2.45118 2.84171 2.45118 2.64645 2.64645C2.45118 2.84171 2.45118 3.15829 2.64645 3.35355L5.29289 6L2.64645 8.64645C2.45118 8.84171 2.45118 9.15829 2.64645 9.35355C2.84171 9.54882 3.15829 9.54882 3.35355 9.35355L6 6.70711L8.64645 9.35355C8.84171 9.54882 9.15829 9.54882 9.35355 9.35355C9.54882 9.15829 9.54882 8.84171 9.35355 8.64645L6.70711 6L9.35355 3.35355Z'
-                            fill='currentColor'
-                          ></path>
-                        </svg>
-                      </span>
-                    </span>
-                  </div>
-                  <select
-                    name=''
-                    id=''
-                    className='absolute top-0 left-0 z-20 h-full w-full bg-transparent opacity-0'
-                  >
-                    <option value=''>Option</option>
-                    <option value=''>Option</option>
-                  </select>
-                  <span className='absolute top-1/2 right-4 z-10 -translate-y-1/2'>
-                    <svg
-                      width='24'
-                      height='24'
-                      viewBox='0 0 24 24'
-                      fill='none'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <g opacity='0.8'>
-                        <path
-                          fillRule='evenodd'
-                          clipRule='evenodd'
-                          d='M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z'
-                          fill='#637381'
-                        ></path>
-                      </g>
-                    </svg>
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Analytics from './pages/Dashboard/Analytics'
 import Calendar from './pages/Calendar'
 import Profile from './pages/Profile'

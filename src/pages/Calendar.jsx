@@ -1,12 +1,9 @@
 import React from 'react';
 import DefaultLayout from '../layout/DefaultLayout';
-import Breadcrumb from '../components/Breadcrumb';
 
 const Calendar = () => {
   return (
     <DefaultLayout>
-      <Breadcrumb pageName='Calendar' />
-
       {/* <!-- ====== Calendar Section Start ====== --> */}
       <div className='w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
         <table className='w-full'>

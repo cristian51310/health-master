@@ -1,11 +1,9 @@
 import React from 'react';
 import DefaultLayout from '../../layout/DefaultLayout';
-import Breadcrumb from '../../components/Breadcrumb';
 
 const Alerts = () => {
   return (
     <DefaultLayout>
-      <Breadcrumb pageName='Alerts' />
 
       <div className='rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark md:p-6 xl:p-9'>
         <div className='flex flex-col gap-7.5'>

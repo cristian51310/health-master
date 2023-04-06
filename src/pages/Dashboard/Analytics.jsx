@@ -1,7 +1,6 @@
 import React from 'react';
 import DefaultLayout from '../../layout/DefaultLayout';
 import CardOne from '../../components/CardOne';
-import ChatCard from '../../components/ChatCard';
 import TableOne from '../../components/TableOne'
 
 const Analytics = () => {
@@ -19,7 +18,6 @@ const Analytics = () => {
         <div className='col-span-12 xl:col-span-8'>
           <TableOne />
         </div>
-        <ChatCard />
       </div>
     </DefaultLayout>
   )

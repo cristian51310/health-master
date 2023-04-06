@@ -5,11 +5,11 @@ import BrandTwo from '../images/brand/brand-02.svg'
 const TableOne = () => {
   return (
     <div
-  className="shadow-default rounded-sm border border-stroke dark:border-strokedark bg-white dark:bg-boxdark pt-6 pb-2.5 xl:pb-1 px-5 sm:px-7.5">
-  <h4 className="font-semibold text-xl text-black dark:text-white mb-6">Top Channels</h4>
+  className="shadow-default rounded-sm border border-stroke   bg-white   pt-6 pb-2.5 xl:pb-1 px-5 sm:px-7.5">
+  <h4 className="font-semibold text-xl text-black   mb-6">Top Channels</h4>
 
   <div className="flex flex-col">
-    <div className="grid grid-cols-3 sm:grid-cols-5 bg-gray-2 dark:bg-meta-4 rounded-sm">
+    <div className="grid grid-cols-3 sm:grid-cols-5 bg-gray-2   rounded-sm">
       <div className="p-2.5 xl:p-5">
         <h5 className="font-medium text-sm xsm:text-base uppercase">Source</h5>
       </div>
@@ -27,14 +27,14 @@ const TableOne = () => {
       </div>
     </div>
 
-    <div className="grid grid-cols-3 sm:grid-cols-5 border-b border-stroke dark:border-strokedark">
+    <div className="grid grid-cols-3 sm:grid-cols-5 border-b border-stroke  ">
       <div className="flex items-center gap-3 p-2.5 xl:p-5">
         <div className="flex-shrink-0"><img src={BrandOne} alt="Brand" /></div>
-        <p className="hidden sm:block text-black dark:text-white">Google</p>
+        <p className="hidden sm:block text-black  ">Google</p>
       </div>
 
       <div className="flex items-center justify-center p-2.5 xl:p-5">
-        <p className="text-black dark:text-white">3.5K</p>
+        <p className="text-black  ">3.5K</p>
       </div>
 
       <div className="flex items-center justify-center p-2.5 xl:p-5">
@@ -42,7 +42,7 @@ const TableOne = () => {
       </div>
 
       <div className="hidden sm:flex items-center justify-center p-2.5 xl:p-5">
-        <p className="text-black dark:text-white">590</p>
+        <p className="text-black  ">590</p>
       </div>
 
       <div className="hidden sm:flex items-center justify-center p-2.5 xl:p-5">
@@ -50,14 +50,14 @@ const TableOne = () => {
       </div>
     </div>
 
-    <div className="grid grid-cols-3 sm:grid-cols-5 border-b border-stroke dark:border-strokedark">
+    <div className="grid grid-cols-3 sm:grid-cols-5 border-b border-stroke  ">
       <div className="flex items-center gap-3 p-2.5 xl:p-5">
         <div className="flex-shrink-0"><img src={BrandTwo} alt="Brand" /></div>
-        <p className="hidden sm:block text-black dark:text-white">Twitter</p>
+        <p className="hidden sm:block text-black  ">Twitter</p>
       </div>
 
       <div className="flex items-center justify-center p-2.5 xl:p-5">
-        <p className="text-black dark:text-white">2.2K</p>
+        <p className="text-black  ">2.2K</p>
       </div>
 
       <div className="flex items-center justify-center p-2.5 xl:p-5">
@@ -65,7 +65,7 @@ const TableOne = () => {
       </div>
 
       <div className="hidden sm:flex items-center justify-center p-2.5 xl:p-5">
-        <p className="text-black dark:text-white">467</p>
+        <p className="text-black  ">467</p>
       </div>
 
       <div className="hidden sm:flex items-center justify-center p-2.5 xl:p-5">

@@ -8,7 +8,7 @@ const Buttons = () => {
     <DefaultLayout>
 
       {/* <!-- Normal Button Items --> */}
-      <div className='mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
+      <div className='mb-10 rounded-sm border border-stroke bg-white shadow-default    '>
         <div className='p-4 md:p-6 xl:p-9'>
           <div className='flex flex-wrap gap-5 xl:gap-20'>
             <Link

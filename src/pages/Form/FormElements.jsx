@@ -9,30 +9,30 @@ const FormElements = () => {
       <div className='grid grid-cols-1 gap-9 sm:grid-cols-2'>
         <div className='flex flex-col gap-9'>
           {/* <!-- Input Fields --> */}
-          <div className='rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
-            <div className='border-b border-stroke py-4 px-6.5 dark:border-strokedark'>
-              <h3 className='font-medium text-black dark:text-white'>
+          <div className='rounded-sm border border-stroke bg-white shadow-default    '>
+            <div className='border-b border-stroke py-4 px-6.5  '>
+              <h3 className='font-medium text-black  '>
                 Input Fields
               </h3>
             </div>
             <div className='flex flex-col gap-5.5 p-6.5'>
               <div>
-                <label className='mb-3 block text-black dark:text-white'>
+                <label className='mb-3 block text-black  '>
                   Default Input
                 </label>
                 <input
                   type='text'
                   placeholder='Default Input'
-                  className='w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+                  className='w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter '
                 />
               </div>
             </div>
           </div>
 
           {/* <!-- Toggle switch input --> */}
-          <div className='rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
-            <div className='border-b border-stroke py-4 px-6.5 dark:border-strokedark'>
-              <h3 className='font-medium text-black dark:text-white'>
+          <div className='rounded-sm border border-stroke bg-white shadow-default    '>
+            <div className='border-b border-stroke py-4 px-6.5  '>
+              <h3 className='font-medium text-black  '>
                 Toggle switch input
               </h3>
             </div>
@@ -44,24 +44,24 @@ const FormElements = () => {
           </div>
 
           {/* <!-- Time and date --> */}
-          <div className='rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
-            <div className='border-b border-stroke py-4 px-6.5 dark:border-strokedark'>
-              <h3 className='font-medium text-black dark:text-white'>
+          <div className='rounded-sm border border-stroke bg-white shadow-default    '>
+            <div className='border-b border-stroke py-4 px-6.5  '>
+              <h3 className='font-medium text-black  '>
                 Time and date
               </h3>
             </div>
             <div className='flex flex-col gap-5.5 p-6.5'>
               <div>
-                <label className='mb-3 block text-black dark:text-white'>
+                <label className='mb-3 block text-black  '>
                   Date picker
                 </label>
                 <div className='relative'>
                   <input
                     type='date'
-                    className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+                    className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary  '
                   />
 
-                  <span className='absolute right-0.5 top-0.5 block rounded-tr rounded-br bg-white p-3.5 dark:bg-form-input'>
+                  <span className='absolute right-0.5 top-0.5 block rounded-tr rounded-br bg-white p-3.5 '>
                     <svg
                       width='18'
                       height='18'
@@ -82,20 +82,20 @@ const FormElements = () => {
           </div>
 
           {/* <!-- File upload --> */}
-          <div className='rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
-            <div className='border-b border-stroke py-4 px-6.5 dark:border-strokedark'>
-              <h3 className='font-medium text-black dark:text-white'>
+          <div className='rounded-sm border border-stroke bg-white shadow-default    '>
+            <div className='border-b border-stroke py-4 px-6.5  '>
+              <h3 className='font-medium text-black  '>
                 File upload
               </h3>
             </div>
             <div className='flex flex-col gap-5.5 p-6.5'>
               <div>
-                <label className='mb-3 block text-black dark:text-white'>
+                <label className='mb-3 block text-black  '>
                   Attach file
                 </label>
                 <input
                   type='file'
-                  className='w-full cursor-pointer rounded-lg border-[1.5px] border-stroke bg-transparent font-medium outline-none transition file:mr-5 file:border-collapse file:cursor-pointer file:border-0 file:border-r file:border-solid file:border-stroke file:bg-whiter dark:file:bg-white/30 dark:file:text-white file:py-3 file:px-5 file:hover:bg-primary file:hover:bg-opacity-10 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:file:border-form-strokedark dark:focus:border-primary'
+                  className='w-full cursor-pointer rounded-lg border-[1.5px] border-stroke bg-transparent font-medium outline-none transition file:mr-5 file:border-collapse file:cursor-pointer file:border-0 file:border-r file:border-solid file:border-stroke file:bg-whiter file:py-3 file:px-5 file:hover:bg-primary file:hover:bg-opacity-10 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter'
                 />
               </div>
 
@@ -105,21 +105,21 @@ const FormElements = () => {
 
         <div className='flex flex-col gap-9'>
           {/* <!-- Textarea Fields --> */}
-          <div className='rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
-            <div className='border-b border-stroke py-4 px-6.5 dark:border-strokedark'>
-              <h3 className='font-medium text-black dark:text-white'>
+          <div className='rounded-sm border border-stroke bg-white shadow-default    '>
+            <div className='border-b border-stroke py-4 px-6.5  '>
+              <h3 className='font-medium text-black  '>
                 Textarea Fields
               </h3>
             </div>
             <div className='flex flex-col gap-5.5 p-6.5'>
               <div>
-                <label className='mb-3 block text-black dark:text-white'>
+                <label className='mb-3 block text-black  '>
                   Default textarea
                 </label>
                 <textarea
                   rows='6'
                   placeholder='Default textarea'
-                  className='w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+                  className='w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter  '
                 ></textarea>
               </div>
 
@@ -127,9 +127,9 @@ const FormElements = () => {
           </div>
 
           {/* <!-- Checkbox and radio --> */}
-          <div className='rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
-            <div className='border-b border-stroke py-4 px-6.5 dark:border-strokedark'>
-              <h3 className='font-medium text-black dark:text-white'>
+          <div className='rounded-sm border border-stroke bg-white shadow-default    '>
+            <div className='border-b border-stroke py-4 px-6.5  '>
+              <h3 className='font-medium text-black  '>
                 Checkbox and radio
               </h3>
             </div>
@@ -139,18 +139,18 @@ const FormElements = () => {
           </div>
 
           {/* <!-- Select input --> */}
-          <div className='rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
-            <div className='border-b border-stroke py-4 px-6.5 dark:border-strokedark'>
-              <h3 className='font-medium text-black dark:text-white'>
+          <div className='rounded-sm border border-stroke bg-white shadow-default    '>
+            <div className='border-b border-stroke py-4 px-6.5  '>
+              <h3 className='font-medium text-black  '>
                 Select input
               </h3>
             </div>
             <div className='flex flex-col gap-5.5 p-6.5'>
               <div>
-                <label className='mb-3 block text-black dark:text-white'>
+                <label className='mb-3 block text-black  '>
                   Select Country
                 </label>
-                <div className='relative z-20 bg-white dark:bg-form-input'>
+                <div className='relative z-20 bg-white '>
                   <span className='absolute top-1/2 left-4 z-30 -translate-y-1/2'>
                     <svg
                       width='20'
@@ -181,7 +181,7 @@ const FormElements = () => {
                       </g>
                     </svg>
                   </span>
-                  <select className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input'>
+                  <select className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary '>
                     <option value=''>USA</option>
                     <option value=''>UK</option>
                     <option value=''>Canada</option>

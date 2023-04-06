@@ -38,27 +38,27 @@ const TaskHeader = () => {
   })
 
   return (
-    <div className='flex flex-col gap-y-4 rounded-sm border border-stroke bg-white p-3 shadow-default dark:border-strokedark dark:bg-boxdark sm:flex-row sm:items-center sm:justify-between'>
+    <div className='flex flex-col gap-y-4 rounded-sm border border-stroke bg-white p-3 shadow-default     sm:flex-row sm:items-center sm:justify-between'>
       <div>
-        <h3 className='text-title-lg font-semibold text-black dark:text-white pl-2'>
+        <h3 className='text-title-lg font-semibold text-black   pl-2'>
           Tasks
         </h3>
       </div>
       <div className='flex flex-col gap-4 2xsm:flex-row 2xsm:items-center'>
         <div className='flex -space-x-2'>
-          <button className='h-9 w-9 rounded-full border-2 border-white dark:border-boxdark'>
+          <button className='h-9 w-9 rounded-full border-2 border-white '>
             <img src={userSeven} alt='User' />
           </button>
-          <button className='h-9 w-9 rounded-full border-2 border-white dark:border-boxdark'>
+          <button className='h-9 w-9 rounded-full border-2 border-white '>
             <img src={userEight} alt='User' />
           </button>
-          <button className='h-9 w-9 rounded-full border-2 border-white dark:border-boxdark'>
+          <button className='h-9 w-9 rounded-full border-2 border-white '>
             <img src={userNine} alt='User' />
           </button>
-          <button className='h-9 w-9 rounded-full border-2 border-white dark:border-boxdark'>
+          <button className='h-9 w-9 rounded-full border-2 border-white '>
             <img src={userTen} alt='User' />
           </button>
-          <button className='flex h-9 w-9 items-center justify-center rounded-full border border-stroke bg-white text-primary dark:border-strokedark dark:bg-[#4f5e77] dark:text-white'>
+          <button className='flex h-9 w-9 items-center justify-center rounded-full border border-stroke bg-white text-primary    '>
             <svg
               className='fill-current'
               width='16'

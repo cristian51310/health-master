@@ -7,7 +7,7 @@ import { AiOutlineCamera } from 'react-icons/ai';
 const Profile = () => {
   return (
     <DefaultLayout>
-      <div className='overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
+      <div className='overflow-hidden rounded-sm border border-stroke bg-white shadow-default    '>
         <div className='relative z-20 h-35 md:h-65'>
           <img
             src={CoverOne}
@@ -46,18 +46,18 @@ const Profile = () => {
             </div>
           </div>
           <div className='mt-4'>
-            <h3 className='mb-1.5 text-2xl font-semibold text-black dark:text-white'>
+            <h3 className='mb-1.5 text-2xl font-semibold text-black  '>
               Danish Heilium
             </h3>
-            <div className='dark:bg-[#37404F] mx-auto mt-4.5 mb-5.5 grid max-w-94 grid-cols-2 rounded-md border border-stroke py-2.5 shadow-1 dark:border-strokedark'>
-              <div className='flex flex-col items-center justify-center gap-1 border-r border-stroke px-4 dark:border-strokedark xsm:flex-row'>
-                <span className='font-semibold text-black dark:text-white'>
+            <div className=' mx-auto mt-4.5 mb-5.5 grid max-w-94 grid-cols-2 rounded-md border border-stroke py-2.5 shadow-1  '>
+              <div className='flex flex-col items-center justify-center gap-1 border-r border-stroke px-4   xsm:flex-row'>
+                <span className='font-semibold text-black  '>
                   129K
                 </span>
                 <span className='text-sm'>Followers</span>
               </div>
               <div className='flex flex-col items-center justify-center gap-1 px-4 xsm:flex-row'>
-                <span className='font-semibold text-black dark:text-white'>
+                <span className='font-semibold text-black  '>
                   2K
                 </span>
                 <span className='text-sm'>Following</span>
@@ -65,7 +65,7 @@ const Profile = () => {
             </div>
 
             <div className='mx-auto max-w-180'>
-              <h4 className='font-semibold text-black dark:text-white'>
+              <h4 className='font-semibold text-black  '>
                 About Me
               </h4>
               <p className='mt-4.5'>

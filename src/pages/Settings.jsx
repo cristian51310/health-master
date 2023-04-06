@@ -9,9 +9,9 @@ const Settings = () => {
       <div className='mx-auto max-w-270'>
         <div className='grid grid-cols-5 gap-8'>
           <div className='col-span-5 xl:col-span-3'>
-            <div className='rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
-              <div className='border-b border-stroke py-4 px-7 dark:border-strokedark'>
-                <h3 className='font-medium text-black dark:text-white'>
+            <div className='rounded-sm border border-stroke bg-white shadow-default    '>
+              <div className='border-b border-stroke py-4 px-7  '>
+                <h3 className='font-medium text-black  '>
                   Personal Information
                 </h3>
               </div>
@@ -20,7 +20,7 @@ const Settings = () => {
                   <div className='mb-5.5 flex flex-col gap-5.5 sm:flex-row'>
                     <div className='w-full sm:w-full'>
                       <label
-                        className='mb-3 block text-sm font-medium text-black dark:text-white'
+                        className='mb-3 block text-sm font-medium text-black  '
                         htmlFor='fullName'
                       >
                         Full Name
@@ -30,7 +30,7 @@ const Settings = () => {
                           <AiOutlineUser/>
                         </span>
                         <input
-                          className='w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary'
+                          className='w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none       '
                           type='text'
                           name='fullName'
                           id='fullName'
@@ -44,7 +44,7 @@ const Settings = () => {
 
                   <div className='mb-5.5'>
                     <label
-                      className='mb-3 block text-sm font-medium text-black dark:text-white'
+                      className='mb-3 block text-sm font-medium text-black  '
                       htmlFor='emailAddress'
                     >
                       Email Address
@@ -54,7 +54,7 @@ const Settings = () => {
                         <AiOutlineMail/>
                       </span>
                       <input
-                        className='w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary'
+                        className='w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none       '
                         type='email'
                         name='emailAddress'
                         id='emailAddress'
@@ -66,13 +66,13 @@ const Settings = () => {
 
                   <div className='mb-5.5'>
                     <label
-                      className='mb-3 block text-sm font-medium text-black dark:text-white'
+                      className='mb-3 block text-sm font-medium text-black  '
                       htmlFor='Username'
                     >
                       Username
                     </label>
                     <input
-                      className='w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary'
+                      className='w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none       '
                       type='text'
                       name='Username'
                       id='Username'
@@ -83,7 +83,7 @@ const Settings = () => {
 
                   <div className='mb-5.5'>
                     <label
-                      className='mb-3 block text-sm font-medium text-black dark:text-white'
+                      className='mb-3 block text-sm font-medium text-black  '
                       htmlFor='Username'
                     >
                       BIO
@@ -94,7 +94,7 @@ const Settings = () => {
                       </span>
 
                       <textarea
-                        className='w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary'
+                        className='w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none       '
                         name='bio'
                         id='bio'
                         rows='6'
@@ -106,7 +106,7 @@ const Settings = () => {
 
                   <div className='flex justify-end gap-4.5'>
                     <button
-                      className='flex justify-center rounded border border-stroke py-2 px-6 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white'
+                      className='flex justify-center rounded border border-stroke py-2 px-6 font-medium text-black hover:shadow-1    '
                       type='submit'
                     >
                       Cancel
@@ -123,9 +123,9 @@ const Settings = () => {
             </div>
           </div>
           <div className='col-span-5 xl:col-span-2'>
-            <div className='rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
-              <div className='border-b border-stroke py-4 px-7 dark:border-strokedark'>
-                <h3 className='font-medium text-black dark:text-white'>
+            <div className='rounded-sm border border-stroke bg-white shadow-default    '>
+              <div className='border-b border-stroke py-4 px-7  '>
+                <h3 className='font-medium text-black  '>
                   Your Photo
                 </h3>
               </div>
@@ -136,7 +136,7 @@ const Settings = () => {
                       <img src={userThree} alt='User' />
                     </div>
                     <div>
-                      <span className='mb-1.5 text-black dark:text-white'>
+                      <span className='mb-1.5 text-black  '>
                         Edit your photo
                       </span>
                       <span className='flex gap-2.5'>
@@ -152,7 +152,7 @@ const Settings = () => {
 
                   <div
                     id='FileUpload'
-                    className='relative mb-5.5 block w-full cursor-pointer appearance-none rounded border-2 border-dashed border-primary bg-gray py-4 px-4 dark:bg-meta-4 sm:py-7.5'
+                    className='relative mb-5.5 block w-full cursor-pointer appearance-none rounded border-2 border-dashed border-primary bg-gray py-4 px-4   sm:py-7.5'
                   >
                     <input
                       type='file'
@@ -160,7 +160,7 @@ const Settings = () => {
                       className='absolute inset-0 z-50 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-none'
                     />
                     <div className='flex flex-col items-center justify-center space-y-3'>
-                      <span className='flex h-10 w-10 items-center justify-center rounded-full border border-stroke bg-white dark:border-strokedark dark:bg-boxdark'>
+                      <span className='flex h-10 w-10 items-center justify-center rounded-full border border-stroke bg-white    '>
                         <AiOutlineCloudUpload/>
                       </span>
                       <p>
@@ -172,7 +172,7 @@ const Settings = () => {
 
                   <div className='flex justify-end gap-4.5'>
                     <button
-                      className='flex justify-center rounded border border-stroke py-2 px-6 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white'
+                      className='flex justify-center rounded border border-stroke py-2 px-6 font-medium text-black hover:shadow-1    '
                       type='submit'
                     >
                       Cancel

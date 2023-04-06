@@ -1,9 +1,9 @@
 import React from 'react';
 import DefaultLayout from '../../layout/DefaultLayout';
-import Logo from '../../images/logo/logo.svg';
-import LogoDark from '../../images/logo/logo-dark.svg';
+import Logo from '../../images/logo/logo.png';
 import { Link } from 'react-router-dom';
 import { AiOutlineKey, AiOutlineMail, AiOutlineUser } from 'react-icons/ai';
+import InputIcon from '../../components/InputIcon';
 
 const SignUp = () => {
   return (
@@ -13,16 +13,8 @@ const SignUp = () => {
         <div className='flex flex-wrap items-center'>
           <div className='hidden w-full xl:block xl:w-1/2'>
             <div className='py-17.5 px-26 text-center'>
-              <Link className='mb-5.5 inline-block' to='/'>
-                <img className='hidden' src={Logo} alt='Logo' />
-              </Link>
-              <p className='2xl:px-20'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                suspendisse.
-              </p>
-
-              <span className='mt-15 inline-block'>
-                Aqui va tu logo
+              <span className='inline-block'>
+                <img src={Logo} alt="" />
               </span>
             </div>
           </div>
@@ -34,78 +26,32 @@ const SignUp = () => {
               </h2>
 
               <form>
-                <div className='mb-4'>
-                  <label className='mb-2.5 block font-medium text-black  '>
-                    Name
-                  </label>
-                  <div className='relative'>
-                    <input
-                      type='text'
-                      placeholder='Enter your full name'
-                      className='w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none  '
-                    />
 
-                    <span className='absolute right-4 top-4'>
-                      <AiOutlineUser/>
-                    </span>
-                  </div>
-                </div>
+                <InputIcon
+                  text='Nombre'
+                  type='text'
+                  placeholder='Ingresa tu nombre'
+                  icon={<AiOutlineUser/>}
+                />
 
-                <div className='mb-4'>
-                  <label className='mb-2.5 block font-medium text-black  '>
-                    Email
-                  </label>
-                  <div className='relative'>
-                    <input
-                      type='email'
-                      placeholder='Enter your email'
-                      className='w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none  '
-                    />
+                <InputIcon
+                  text='Email'
+                  type='email'
+                  placeholder='Ingresa tu Email'
+                  icon={<AiOutlineMail/>}
+                />
 
-                    <span className='absolute right-4 top-4'>
-                      <AiOutlineMail/>
-                    </span>
-                  </div>
-                </div>
-
-                <div className='mb-4'>
-                  <label className='mb-2.5 block font-medium text-black  '>
-                    Password
-                  </label>
-                  <div className='relative'>
-                    <input
-                      type='password'
-                      placeholder='Enter your password'
-                      className='w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none  '
-                    />
-
-                    <span className='absolute right-4 top-4'>
-                      <AiOutlineKey/>
-                    </span>
-                  </div>
-                </div>
-
-                <div className='mb-6'>
-                  <label className='mb-2.5 block font-medium text-black  '>
-                    Re-type Password
-                  </label>
-                  <div className='relative'>
-                    <input
-                      type='password'
-                      placeholder='Re-enter your password'
-                      className='w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none  '
-                    />
-
-                    <span className='absolute right-4 top-4'>
-                      <AiOutlineKey/>
-                    </span>
-                  </div>
-                </div>
+                <InputIcon
+                  text='Contraseña'
+                  type='password'
+                  placeholder='Ingresa tu Contraseña'
+                  icon={<AiOutlineMail/>}
+                />
 
                 <div className='mb-5'>
                   <input
                     type='submit'
-                    value='Create account'
+                    value='Crear Cuenta'
                     className='w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90'
                   />
                 </div>

@@ -21,11 +21,11 @@ const App = () => {
     setTimeout(() => {
       preloader.style.display = 'none'
       setLoading(false)
-    }, 2000);
+    }, 1000);
   }
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1000)
+    setTimeout(() => setLoading(false), 700)
   }, [])
 
   return (

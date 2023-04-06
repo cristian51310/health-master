@@ -1,6 +1,6 @@
 import React from 'react';
 import DefaultLayout from '../layout/DefaultLayout';
-import userThree from '../images/user/user-03.png';
+import userThree from '../images/user/user-01.png';
 import { AiOutlineUser, AiOutlineMail, AiOutlineForm, AiOutlineCloudUpload } from "react-icons/ai";
 
 const Settings = () => {

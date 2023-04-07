@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import LogoIcon from '../images/logo/logo-icon.svg'
-import DropdownNotification from './DropdownMessage'
 import DropdownUser from './DropdownUser'
-import { Link } from 'react-router-dom'
 import { AiOutlineMenu } from 'react-icons/ai'
 
 const Header = (
@@ -11,7 +9,7 @@ const Header = (
 ) => {  
 
   return (
-    <header className='sticky top-0 z-999 flex w-full bg-white drop-shadow-1'>
+    <header className='sticky top-0 z-999 flex w-full bg-white drop-shadow-2'>
       <div className='flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11'>
         <div className='flex items-center gap-2 sm:gap-4 lg:hidden'>
           <button
@@ -30,12 +28,7 @@ const Header = (
         <div className='hidden sm:block'/>
 
         <div className='flex items-center gap-3 2xsm:gap-7'>
-          <ul className='flex items-center gap-2 2xsm:gap-4'>
-            <DropdownNotification />
-          </ul>
-
           <DropdownUser />
-
         </div>
       </div>
     </header>

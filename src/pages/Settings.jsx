@@ -9,7 +9,7 @@ const Settings = () => {
       <div className='mx-auto max-w-270'>
         <div className='grid grid-cols-5 gap-8'>
           <div className='col-span-5 xl:col-span-3'>
-            <div className='rounded-sm border border-stroke bg-white shadow-default    '>
+            <div className='rounded-2xl border border-stroke bg-white shadow-default    '>
               <div className='border-b border-stroke py-4 px-7  '>
                 <h3 className='font-medium text-black  '>
                   Personal Information
@@ -30,7 +30,7 @@ const Settings = () => {
                           <AiOutlineUser/>
                         </span>
                         <input
-                          className='w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none       '
+                          className='w-full rounded border border-stroke bg-gray-100py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none       '
                           type='text'
                           name='fullName'
                           id='fullName'
@@ -54,7 +54,7 @@ const Settings = () => {
                         <AiOutlineMail/>
                       </span>
                       <input
-                        className='w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none       '
+                        className='w-full rounded border border-stroke bg-gray-100py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none       '
                         type='email'
                         name='emailAddress'
                         id='emailAddress'
@@ -72,7 +72,7 @@ const Settings = () => {
                       Username
                     </label>
                     <input
-                      className='w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none       '
+                      className='w-full rounded border border-stroke bg-gray-100py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none       '
                       type='text'
                       name='Username'
                       id='Username'
@@ -94,7 +94,7 @@ const Settings = () => {
                       </span>
 
                       <textarea
-                        className='w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none       '
+                        className='w-full rounded border border-stroke bg-gray-100py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none       '
                         name='bio'
                         id='bio'
                         rows='6'
@@ -112,7 +112,7 @@ const Settings = () => {
                       Cancel
                     </button>
                     <button
-                      className='flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:shadow-1'
+                      className='flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray-100 hover:shadow-1'
                       type='submit'
                     >
                       Save
@@ -123,7 +123,7 @@ const Settings = () => {
             </div>
           </div>
           <div className='col-span-5 xl:col-span-2'>
-            <div className='rounded-sm border border-stroke bg-white shadow-default    '>
+            <div className='rounded-2xl border border-stroke bg-white shadow-default    '>
               <div className='border-b border-stroke py-4 px-7  '>
                 <h3 className='font-medium text-black  '>
                   Your Photo
@@ -137,14 +137,11 @@ const Settings = () => {
                     </div>
                     <div>
                       <span className='mb-1.5 text-black  '>
-                        Edit your photo
+                        Edita tu foto
                       </span>
                       <span className='flex gap-2.5'>
                         <button className='text-sm hover:text-primary'>
-                          Delete
-                        </button>
-                        <button className='text-sm hover:text-primary'>
-                          Update
+                          Sube una nueva foto de perfil
                         </button>
                       </span>
                     </div>
@@ -152,7 +149,7 @@ const Settings = () => {
 
                   <div
                     id='FileUpload'
-                    className='relative mb-5.5 block w-full cursor-pointer appearance-none rounded border-2 border-dashed border-primary bg-gray py-4 px-4   sm:py-7.5'
+                    className='relative mb-5.5 block w-full cursor-pointer appearance-none rounded border-2 border-dashed border-primary bg-gray-100py-4 px-4   sm:py-7.5'
                   >
                     <input
                       type='file'
@@ -178,7 +175,7 @@ const Settings = () => {
                       Cancel
                     </button>
                     <button
-                      className='flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:bg-opacity-70'
+                      className='flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray-100 hover:bg-opacity-70'
                       type='submit'
                     >
                       Save

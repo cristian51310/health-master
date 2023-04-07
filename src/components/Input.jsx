@@ -1,16 +1,23 @@
 import React from 'react';
 
-const Input = ({text, type, placeholder}) => {
+const Input = ({text, type, placeholder, name, icon, onChange}) => {
   return (
     <div className='mb-4.5'>
       <label className='mb-2.5 block text-black  '>
         {text}
       </label>
-      <input
-        type={type}
-        placeholder={placeholder}
-        className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary'
-      />
+      <div className='relative'>
+        <input
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          onChange={onChange}
+          className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary'
+        />
+        <span className='absolute right-4 top-4'>
+          {icon}
+        </span>
+      </div>
     </div>
   )
 }

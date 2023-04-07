@@ -6,7 +6,7 @@ const DefaultLayout = ({children}) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className=' -2'>
+    <div className=''>
       <div className='flex h-screen overflow-hidden'>
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <div className='relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden'>

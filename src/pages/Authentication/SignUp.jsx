@@ -3,7 +3,7 @@ import DefaultLayout from '../../layout/DefaultLayout';
 import Logo from '../../images/logo/logo.png';
 import { Link } from 'react-router-dom';
 import { AiOutlineKey, AiOutlineMail, AiOutlineUser } from 'react-icons/ai';
-import InputIcon from '../../components/InputIcon';
+import Input from '../../components/Input';
 
 const SignUp = () => {
   return (
@@ -27,21 +27,21 @@ const SignUp = () => {
 
               <form>
 
-                <InputIcon
+                <Input
                   text='Nombre'
                   type='text'
                   placeholder='Ingresa tu nombre'
                   icon={<AiOutlineUser/>}
                 />
 
-                <InputIcon
+                <Input
                   text='Email'
                   type='email'
                   placeholder='Ingresa tu Email'
                   icon={<AiOutlineMail/>}
                 />
 
-                <InputIcon
+                <Input
                   text='Contraseña'
                   type='password'
                   placeholder='Ingresa tu Contraseña'

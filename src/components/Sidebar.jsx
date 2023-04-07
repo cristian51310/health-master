@@ -70,13 +70,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <SidebarLink
                 to='/forms/form-layout'
                 icon={<AiOutlineApple/>}
-                text='Form Layout'
+                text='Crear Pacientes'
               />
 
               <SidebarLink
                 to='/tables'
                 icon={<AiOutlineTable/>}
-                text='Tables'
+                text='Pacientes'
               />
 
               <SidebarLink

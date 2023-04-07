@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Analytics from './pages/Dashboard/Analytics'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import Dashboard from './pages/Dashboard'
 import Calendar from './pages/Calendar'
 import Profile from './pages/Profile'
 import FormElements from './pages/Form/FormElements'
-import FormLayout from './pages/Form/FormLayout'
-import Tables from './pages/Tables'
-import Alerts from './pages/UiElements/Alerts'
-import Buttons from './pages/UiElements/Buttons'
+import FormPaciente from './pages/FormPaciente'
+import ListPacientes from './pages/ListPacientes'
 import Login from './pages/Auth/Login'
 import Register from './pages/Auth/Register'
+import DetailPaciente from './pages/DetailPaciente'
 
 const App = () => {
   const [loading, setLoading] = useState(true)
@@ -31,15 +30,16 @@ const App = () => {
     !loading && (
       <>
         <Routes>
-          <Route exact path='/' element={<Analytics />} />
-          <Route path='/dashboard' element={<Analytics />} />
+          <Route path='/' element={<Navigate to='/dashboard' />} />
+          <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/calendar' element={<Calendar />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/forms/form-elements' element={<FormElements />} />
-          <Route path='/forms/form-layout' element={<FormLayout />} />
-          <Route path='/tables' element={<Tables />} />
-          <Route path='/ui/alerts' element={<Alerts />} />
-          <Route path='/ui/buttons' element={<Buttons />} />
+
+          <Route path='/create/paciente' element={<FormPaciente />} />
+          <Route path='/pacientes' element={<ListPacientes />} />
+          <Route path='/paciente/:id' element={<DetailPaciente />} />
+
           <Route path='/auth/login' element={<Login />} />
           <Route path='/auth/register' element={<Register />} />
         </Routes>

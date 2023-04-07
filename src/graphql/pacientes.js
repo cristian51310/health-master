@@ -13,6 +13,28 @@ export const GET_ALL_PACIENTES = gql`
   }
 `
 
+export const GET_PACIENTE = gql`
+  query($id: ID!){
+    paciente(_id: $id) {
+      _id
+      nombre
+      apellidoPaterno
+      apellidoMaterno
+      fechaNacimiento
+      genero
+      createdAt
+    }
+  }
+`
+
+export const DELETE_PACIENTE = gql`
+  mutation($id: ID!){
+    deletedPaciente(_id: $id) {
+      nombre
+    }
+  }
+`
+
 export const CREATE_PACIENTE = gql`
   mutation(
     $nombre: String!, 
@@ -27,6 +49,6 @@ export const CREATE_PACIENTE = gql`
         fechaNacimiento: $fechaNacimiento, 
         genero: $genero) {
         nombre
+    }
   }
-}
 `

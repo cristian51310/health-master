@@ -6,11 +6,10 @@ import Profile from './pages/Profile'
 import FormElements from './pages/Form/FormElements'
 import FormLayout from './pages/Form/FormLayout'
 import Tables from './pages/Tables'
-import Settings from './pages/Settings'
 import Alerts from './pages/UiElements/Alerts'
 import Buttons from './pages/UiElements/Buttons'
-import SignIn from './pages/Authentication/SignIn'
-import SignUp from './pages/Authentication/SignUp'
+import Login from './pages/Auth/Login'
+import Register from './pages/Auth/Register'
 
 const App = () => {
   const [loading, setLoading] = useState(true)
@@ -39,11 +38,10 @@ const App = () => {
           <Route path='/forms/form-elements' element={<FormElements />} />
           <Route path='/forms/form-layout' element={<FormLayout />} />
           <Route path='/tables' element={<Tables />} />
-          <Route path='/settings' element={<Settings />} />
           <Route path='/ui/alerts' element={<Alerts />} />
           <Route path='/ui/buttons' element={<Buttons />} />
-          <Route path='/auth/signin' element={<SignIn />} />
-          <Route path='/auth/signup' element={<SignUp />} />
+          <Route path='/auth/login' element={<Login />} />
+          <Route path='/auth/register' element={<Register />} />
         </Routes>
       </>
     )

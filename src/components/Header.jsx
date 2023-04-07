@@ -1,6 +1,6 @@
 import React from 'react'
 
-import LogoIcon from '../images/logo/logo-icon.svg'
+import LogoIcon from '../images/logo/logo.png'
 import DropdownUser from './DropdownUser'
 import { AiOutlineMenu } from 'react-icons/ai'
 
@@ -22,7 +22,7 @@ const Header = (
             <AiOutlineMenu/>
           </button>
 
-          <img src={LogoIcon} alt='Logo' />
+          <img className='w-8 h-8' src={LogoIcon} alt='Logo' />
         </div>
 
         <div className='hidden sm:block'/>

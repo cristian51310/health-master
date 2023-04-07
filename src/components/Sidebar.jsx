@@ -79,12 +79,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 text='Pacientes'
               />
 
-              <SidebarLink
-                to='/settings'
-                icon={<AiOutlineSetting/>}
-                text='Ajustes'
-              />
-
             </ul>
           </div>
           

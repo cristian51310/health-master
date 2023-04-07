@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 import UserOne from '../images/user/user-01.png'
@@ -44,7 +44,7 @@ const DropdownUser = () => {
               to='/profile'
               className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base'
             >
-              <AiOutlineUser/>
+              <AiOutlineUser />
               Mi Perfil
             </Link>
           </li>
@@ -53,7 +53,7 @@ const DropdownUser = () => {
               to='/auth/signin'
               className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base'
             >
-              <AiOutlineDoubleLeft/>
+              <AiOutlineDoubleLeft />
               Cerrar Sesion
             </Link>
           </li>

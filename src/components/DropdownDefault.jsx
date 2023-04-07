@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react'
 
 const DropdownDefault = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -14,8 +14,7 @@ const DropdownDefault = () => {
         !dropdownOpen ||
         dropdown.current.contains(target) ||
         trigger.current.contains(target)
-      )
-        return
+      ) { return }
       setDropdownOpen(false)
     }
     document.addEventListener('click', clickHandler)
@@ -120,4 +119,4 @@ const DropdownDefault = () => {
   )
 }
 
-export default DropdownDefault;
+export default DropdownDefault

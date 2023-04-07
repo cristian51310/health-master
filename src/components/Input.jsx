@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-const Input = ({text, type, placeholder, name, icon, defaultValue, onChange}) => {
+const Input = ({ text, type, placeholder, name, icon, defaultValue, onChange }) => {
   return (
     <div className='mb-4.5'>
       <label className='mb-2.5 block text-black  '>
@@ -23,4 +23,4 @@ const Input = ({text, type, placeholder, name, icon, defaultValue, onChange}) =>
   )
 }
 
-export default Input;
+export default Input

@@ -6,8 +6,7 @@ import { AiOutlineMenu } from 'react-icons/ai'
 
 const Header = (
   props
-) => {  
-
+) => {
   return (
     <header className='sticky top-0 z-999 flex w-full bg-white drop-shadow-2'>
       <div className='flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11'>
@@ -19,13 +18,13 @@ const Header = (
             }}
             className='rounded-sm border border-stroke bg-white p-1.5 shadow-sm  lg:hidden'
           >
-            <AiOutlineMenu/>
+            <AiOutlineMenu />
           </button>
 
           <img className='w-8 h-8' src={LogoIcon} alt='Logo' />
         </div>
 
-        <div className='hidden sm:block'/>
+        <div className='hidden sm:block' />
 
         <div className='flex items-center gap-3 2xsm:gap-7'>
           <DropdownUser />

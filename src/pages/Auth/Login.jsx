@@ -1,26 +1,25 @@
-import React from 'react';
-import DefaultLayout from '../../layout/DefaultLayout';
+import React from 'react'
 import Logo from '../../images/logo/logo.png'
 import { Link } from 'react-router-dom'
-import { AiOutlineKey, AiOutlineMail } from 'react-icons/ai';
-import Input from '../../components/Input';
+import { AiOutlineKey, AiOutlineMail } from 'react-icons/ai'
+import Input from '../../components/Input'
 
 const Login = () => {
   return (
 
-    <body className="min-h-screen text-gray-900 flex justify-center">
-      <div className=" bg-white flex justify-center flex-1">
-        <div className="lg:w-1/2 xl:w-5/12 w-full p-6 sm:p-10">
+    <body className='min-h-screen text-gray-900 flex justify-center'>
+      <div className=' bg-white flex justify-center flex-1'>
+        <div className='lg:w-1/2 xl:w-5/12 w-full p-6 sm:p-10'>
 
-          <div className="mt-8 flex flex-col items-center">
+          <div className='mt-8 flex flex-col items-center'>
             <div className='flex h-full justify-center items-center gap-8'>
-              <img src={Logo} className="w-20 mx-auto" />
-              <h1 className="text-2xl xl:text-3xl font-extrabold">
+              <img src={Logo} className='w-20 mx-auto' />
+              <h1 className='text-2xl xl:text-3xl font-extrabold'>
                 Inicia Sesion
               </h1>
             </div>
 
-            <div className="w-full flex-1 mt-8 px-4">
+            <div className='w-full flex-1 mt-8 px-4'>
               <form>
                 <Input
                   text='Email'
@@ -54,15 +53,15 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1 bg-green-100 text-center hidden lg:flex">
+        <div className='flex-1 bg-green-100 text-center hidden lg:flex'>
           <div
-            className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
-            style={{ backgroundImage: `url('https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg')` }}
-          ></div>
+            className='m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat'
+            style={{ backgroundImage: 'url(\'https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg\')' }}
+          />
         </div>
       </div>
     </body>
   )
 }
 
-export default Login;
+export default Login

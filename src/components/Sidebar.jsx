@@ -1,17 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import React, { useRef } from 'react'
+import { NavLink } from 'react-router-dom'
 import Logo from '../images/logo/logo.png'
-import { AiOutlineApple, AiOutlineCalendar, AiOutlineClose, AiOutlineHome, AiOutlineSetting, AiOutlineTable, AiOutlineUser } from 'react-icons/ai'
+import { AiOutlineApple, AiOutlineCalendar, AiOutlineClose, AiOutlineHome, AiOutlineTable, AiOutlineUser } from 'react-icons/ai'
 
-const SidebarLink = ({ to, icon, text}) => {
-  return(
+const SidebarLink = ({ to, icon, text }) => {
+  return (
     <li>
       <NavLink
         to={to}
         className={({ isActive }) =>
           'relative py-4 flex items-center gap-2.5 rounded-md px-4 font-medium text-white duration-300 ease-in-out hover:bg-meta-3 ' +
-          (isActive && 'bg-meta-5')
-        }
+          (isActive && 'bg-meta-5')}
       >
         {icon}
         {text}
@@ -39,7 +38,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className='block lg:hidden'
         >
-          <AiOutlineClose/>
+          <AiOutlineClose />
         </button>
       </div>
       {/* <!-- SIDEBAR HEADER --> */}
@@ -51,37 +50,37 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
               <SidebarLink
                 to='/dashboard'
-                icon={<AiOutlineHome/>}
+                icon={<AiOutlineHome />}
                 text='Dashboard'
               />
 
               <SidebarLink
                 to='/calendar'
-                icon={<AiOutlineCalendar/>}
+                icon={<AiOutlineCalendar />}
                 text='Calendario'
               />
 
               <SidebarLink
                 to='/profile'
-                icon={<AiOutlineUser/>}
+                icon={<AiOutlineUser />}
                 text='Perfil'
               />
 
               <SidebarLink
                 to='/forms/form-layout'
-                icon={<AiOutlineApple/>}
+                icon={<AiOutlineApple />}
                 text='Crear Pacientes'
               />
 
               <SidebarLink
                 to='/tables'
-                icon={<AiOutlineTable/>}
+                icon={<AiOutlineTable />}
                 text='Pacientes'
               />
 
             </ul>
           </div>
-          
+
         </nav>
         {/* <!-- Sidebar Menu --> */}
       </div>
@@ -89,4 +88,4 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   )
 }
 
-export default Sidebar;
+export default Sidebar

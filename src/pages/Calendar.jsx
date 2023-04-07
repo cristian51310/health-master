@@ -1,5 +1,5 @@
-import React from 'react';
-import DefaultLayout from '../layout/DefaultLayout';
+import React from 'react'
+import DefaultLayout from '../layout/DefaultLayout'
 
 const Calendar = () => {
   return (
@@ -269,4 +269,4 @@ const Calendar = () => {
   )
 }
 
-export default Calendar;
+export default Calendar

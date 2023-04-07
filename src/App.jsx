@@ -16,11 +16,11 @@ const App = () => {
 
   const preloader = document.getElementById('preloader')
 
-  if(preloader) {
+  if (preloader) {
     setTimeout(() => {
       preloader.style.display = 'none'
       setLoading(false)
-    }, 1000);
+    }, 1000)
   }
 
   useEffect(() => {

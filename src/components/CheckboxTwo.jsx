@@ -36,7 +36,7 @@ const CheckboxTwo = () => {
                   fill='#3056D3'
                   stroke='#3056D3'
                   strokeWidth='0.4'
-                ></path>
+                />
               </svg>
             </span>
           </div>

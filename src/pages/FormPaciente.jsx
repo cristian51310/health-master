@@ -21,6 +21,13 @@ const FormPaciente = () => {
     genero: ''
   })
 
+  const handleChange = e => {
+    setPaciente({
+      ...paciente,
+      [e.target.name]: e.target.value
+    })
+  }
+
   const [createPaciente, { loading }] = useMutation(CREATE_PACIENTE, {
     refetchQueries: [
       {
@@ -29,13 +36,6 @@ const FormPaciente = () => {
       'GetAllPacintes'
     ]
   })
-
-  const handleChange = e => {
-    setPaciente({
-      ...paciente,
-      [e.target.name]: e.target.value
-    })
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()

@@ -1,73 +1,201 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from '../../images/logo/logo.png'
-import { Link } from 'react-router-dom'
-import { AiOutlineMail, AiOutlineUser } from 'react-icons/ai'
+import { Link, useNavigate } from 'react-router-dom'
+import { AiOutlineKey, AiOutlineMail } from 'react-icons/ai'
 import Input from '../../components/Input'
+import { useMutation } from '@apollo/client'
+import { CREATE_USUARIO } from '../../graphql/usuarios.js'
+import { CREATE_DOCTOR } from '../../graphql/doctores.js'
+import { Button } from '../../components/Button'
 
 const SignIn = () => {
+  const navigate = useNavigate()
+
+  const [doctor, setDoctor] = useState({
+    usuarioId: '',
+    nombre: '',
+    apellidoPaterno: '',
+    apellidoMaterno: '',
+    fechaNacimiento: '',
+    genero: '',
+    curp: '',
+    rfc: '',
+    cedula: ''
+  })
+
+  const [usuario, setUsuario] = useState({
+    email: '',
+    password: ''
+  })
+
+  const handleChangeDoctor = (e) => {
+    setDoctor({
+      ...doctor,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleChangeUser = (e) => {
+    setUsuario({
+      ...usuario,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const [createUsuario] = useMutation(CREATE_USUARIO)
+
+  const [createDoctor, { loading }] = useMutation(CREATE_DOCTOR)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const { data } = await createUsuario({
+      variables: {
+        email: usuario.email,
+        password: usuario.password
+      }
+    })
+    const idNewUsuario = (data.createUsuario._id)
+    await createDoctor({
+      variables: {
+        usuarioId: idNewUsuario,
+        nombre: doctor.nombre,
+        apellidoPaterno: doctor.apellidoPaterno,
+        apellidoMaterno: doctor.apellidoMaterno,
+        fechaNacimiento: doctor.fechaNacimiento,
+        genero: doctor.genero,
+        curp: doctor.curp,
+        rfc: doctor.rfc,
+        cedula: doctor.cedula
+      }
+    })
+    navigate('/auth/login')
+  }
+
   return (
 
-    <body className='min-h-screen text-gray-900 flex justify-center'>
-      <div className=' bg-white flex justify-center flex-1'>
-        <div className='lg:w-1/2 xl:w-5/12 w-full p-6 sm:p-10'>
+    <div className='bg-white min-h-screen text-gray-900 flex justify-center items-center'>
 
-          <div className='mt-8 flex flex-col items-center'>
-            <div className='flex h-full justify-center items-center gap-8'>
-              <img src={Logo} className='w-20 mx-auto' />
-              <h1 className='text-2xl xl:text-3xl font-extrabold'>
-                Registrate
-              </h1>
+      <div className='w-full py-10 md:px-48 px-10 flex-1'>
+
+        <div className='mt-8 flex flex-col items-center'>
+          <form onSubmit={handleSubmit} className='grid grid-cols-2 w-full gap-12'>
+            <div className='md:col-span-1 col-span-2'>
+
+              <div className='flex items-center justify-start w-full gap-7 mb-8'>
+                <img src={Logo} className='w-20' />
+                <h1 className='text-5xl font-bold'>Registrate</h1>
+              </div>
+
+              <Input
+                name='nombre'
+                text='Nombre'
+                type='text'
+                placeholder='Ingresa tu nombre'
+                onChange={handleChangeDoctor}
+              />
+
+              <Input
+                name='apellidoPaterno'
+                text='Apellido Paterno'
+                type='text'
+                placeholder='Ingresa tu primer apellido'
+                onChange={handleChangeDoctor}
+              />
+
+              <Input
+                name='apellidoMaterno'
+                text='Apellido Materno'
+                type='text'
+                placeholder='Ingresa tu segundo apellido'
+                onChange={handleChangeDoctor}
+              />
+
+              <Input
+                name='fechaNacimiento'
+                text='Fecha Nacimiento'
+                type='date'
+                onChange={handleChangeDoctor}
+              />
+
+              <Input
+                name='genero'
+                text='Genero'
+                placeholder='Ingresa tu genero (M/F)'
+                type='text'
+                onChange={handleChangeDoctor}
+              />
             </div>
 
-            <div className='w-full flex-1 mt-8 px-4'>
-              <form>
-                <Input
-                  text='Nombre'
-                  type='text'
-                  placeholder='Ingresa tu nombre'
-                  icon={<AiOutlineUser />}
-                />
+            <div className='md:col-span-1 col-span-2 mt-2'>
 
-                <Input
-                  text='Email'
-                  type='email'
-                  placeholder='Ingresa tu Email'
-                  icon={<AiOutlineMail />}
-                />
+              <Input
+                name='curp'
+                text='CURP'
+                type='text'
+                placeholder='Ingresa tu curp (18 digitos)'
+                limit={18}
+                onChange={handleChangeDoctor}
+              />
 
-                <Input
-                  text='Contraseña'
-                  type='password'
-                  placeholder='Ingresa tu Contraseña'
-                  icon={<AiOutlineMail />}
-                />
+              <Input
+                name='rfc'
+                text='RFC'
+                type='text'
+                placeholder='Ingresa tu rfc'
+                limit={18}
+                onChange={handleChangeDoctor}
+              />
 
-                <input
-                  type='submit'
-                  value='Sign In'
-                  className='w-full mt-4 cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90'
-                />
+              <Input
+                name='cedula'
+                text='Cedula profesional'
+                type='text'
+                placeholder='ingresa tu cedula'
+                limit={18}
+                onChange={handleChangeDoctor}
+              />
 
-                <div className='mt-6 text-center'>
-                  <p>
-                    Ya tienes una cuenta?{' '}
-                    <Link to='/auth/login' className='text-primary'>
-                      Inicia Sesion
-                    </Link>
-                  </p>
-                </div>
-              </form>
+              <Input
+                name='email'
+                text='Email'
+                type='email'
+                placeholder='ejemplo@ejemplo.com'
+                icon={<AiOutlineMail />}
+                onChange={handleChangeUser}
+              />
+
+              <Input
+                name='password'
+                text='Contraseña'
+                type='password'
+                placeholder='**********'
+                limit={8}
+                icon={<AiOutlineKey />}
+                onChange={handleChangeUser}
+              />
+
+              <Button
+                text='Registrar Paciente'
+                type='submit'
+                disabled={!doctor.nombre || !doctor.fechaNacimiento || !doctor.genero || !usuario.email || !usuario.password || loading}
+              />
+
+              <div className='mt-6 text-center'>
+                <p>
+                  Ya tienes una cuenta?{' '}
+                  <Link to='/auth/login' className='text-primary'>
+                    Inicia Sesion
+                  </Link>
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className='flex-1 bg-green-100 text-center hidden lg:flex'>
-          <div
-            className='m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat'
-            style={{ backgroundImage: 'url(\'https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg\')' }}
-          />
+
+          </form>
+
         </div>
       </div>
-    </body>
+
+    </div>
   )
 }
 

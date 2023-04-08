@@ -1,14 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from '../../images/logo/logo.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineKey, AiOutlineMail } from 'react-icons/ai'
 import Input from '../../components/Input'
 
 const Login = () => {
+  const navigate = useNavigate()
+
+  const [usuario, setUsuario] = useState({
+    email: '',
+    password: ''
+  })
+
+  const handleChange = e => {
+    setUsuario({
+      ...usuario,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = () => {
+    navigate('/')
+  }
+
   return (
 
-    <body className='min-h-screen text-gray-900 flex justify-center'>
-      <div className=' bg-white flex justify-center flex-1'>
+    <div className='bg-white min-h-screen text-gray-900 flex justify-center'>
+      <div className='flex justify-center flex-1 items-center'>
         <div className='lg:w-1/2 xl:w-5/12 w-full p-6 sm:p-10'>
 
           <div className='mt-8 flex flex-col items-center'>
@@ -20,25 +38,29 @@ const Login = () => {
             </div>
 
             <div className='w-full flex-1 mt-8 px-4'>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <Input
+                  name='email'
                   text='Email'
                   type='email'
                   placeholder='Ingresa tu correo electronico'
+                  onChange={handleChange}
                   icon={<AiOutlineMail />}
                 />
 
                 <Input
+                  name='password'
                   text='Password'
                   type='password'
-                  placeholder='Ingresa tu correo contraseña'
+                  placeholder='Ingresa tu contraseña'
+                  onChange={handleChange}
                   icon={<AiOutlineKey />}
                 />
 
                 <input
                   type='submit'
-                  value='Sign In'
-                  className='w-full mt-4 cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90'
+                  value='Iniciar Sesion'
+                  className='w-full mt-4 cursor-pointer rounded-xl border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90'
                 />
 
                 <div className='mt-6 text-center'>
@@ -53,14 +75,14 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <div className='flex-1 bg-green-100 text-center hidden lg:flex'>
+        <div className='flex-1 bg-green-100 text-center hidden mi md:flex min-h-screen'>
           <div
-            className='m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat'
+            className='m-12 xl:m-16 w-full bg-cover bg-center bg-no-repeat'
             style={{ backgroundImage: 'url(\'https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg\')' }}
           />
         </div>
       </div>
-    </body>
+    </div>
   )
 }
 

@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import Logo from '../../images/logo/logo.png'
 import { Link, useNavigate } from 'react-router-dom'
-import { AiOutlineKey, AiOutlineMail } from 'react-icons/ai'
+import { AiOutlineMail } from 'react-icons/ai'
 import Input from '../../components/Input'
+import { useMutation } from '@apollo/client'
+import { LOGIN } from '../../graphql/usuarios'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -19,8 +21,24 @@ const Login = () => {
     })
   }
 
-  const handleSubmit = () => {
-    navigate('/')
+  const [login, { error }] = useMutation(LOGIN)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const { data } = await login({
+      variables: {
+        email: usuario.email,
+        password: usuario.password
+      }
+    })
+
+    if (!error) {
+      console.log(data.login)
+      window.localStorage.setItem('token', data.login)
+      navigate('/')
+    } else {
+      console.log('Credenciales invalidas')
+    }
   }
 
   return (
@@ -43,6 +61,7 @@ const Login = () => {
                   name='email'
                   text='Email'
                   type='email'
+                  autoComplete='off'
                   placeholder='Ingresa tu correo electronico'
                   onChange={handleChange}
                   icon={<AiOutlineMail />}
@@ -50,11 +69,11 @@ const Login = () => {
 
                 <Input
                   name='password'
+                  autoComplete='off'
                   text='Password'
                   type='password'
                   placeholder='Ingresa tu contraseña'
                   onChange={handleChange}
-                  icon={<AiOutlineKey />}
                 />
 
                 <input

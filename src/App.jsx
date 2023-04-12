@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard'
 import Calendar from './pages/Calendar'
 import Profile from './pages/Profile'
 import FormElements from './pages/Form/FormElements'
+import FormReceta from './pages/FormReceta'
 import FormPaciente from './pages/FormPaciente'
 import ListPacientes from './pages/ListPacientes'
 import Login from './pages/Auth/Login'
@@ -36,6 +37,7 @@ const App = () => {
           <Route path='/profile' element={<Profile />} />
           <Route path='/forms/form-elements' element={<FormElements />} />
 
+          <Route path='/create/receta' element={<FormReceta />} />
           <Route path='/create/paciente' element={<FormPaciente />} />
           <Route path='/pacientes' element={<ListPacientes />} />
           <Route path='/paciente/:id' element={<DetailPaciente />} />

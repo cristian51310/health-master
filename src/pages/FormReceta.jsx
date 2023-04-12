@@ -1,24 +1,36 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import DefaultLayout from '../layout/DefaultLayout'
 import Input from '../components/Input'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import { CREATE_PACIENTE, GET_ALL_PACIENTES } from '../graphql/pacientes'
-import userThree from '../images/user/user-01.png'
-import { AiOutlineCloudUpload, AiFillAlipayCircle } from 'react-icons/ai'
+import { AiFillAlipayCircle, AiOutlineUserAdd } from 'react-icons/ai'
 import { Button } from '../components/Button'
+import TextArea from '../components/TextArea'
 
 const FormReceta = () => {
   const params = useParams()
   const navigate = useNavigate()
 
-  const [paciente, setPaciente] = useState({
-    nombre: '',
-    apellidoPaterno: '',
-    apellidoMaterno: '',
-    fechaNacimiento: '',
-    genero: ''
+  const [fecha, setFecha] = useState(new Date().toISOString().substr(0, 10))
+  useEffect(() => {
+    const date = new Date().toISOString().substr(0, 10)
+    setFecha(date)
+  }, [])
+
+  const [receta, setReceta] = useState({
+    doctorId: '',
+    pacienteId: '',
+    presionArterial: '',
+    frecuenciaCardiaca: '',
+    frecuenciaRespiratoria: '',
+    temperatura: '',
+    peso: '',
+    estatura: '',
+    alergias: '',
+    diagnostico: '',
+    tratamiento: ''
   })
 
   const [createPaciente, { loading }] = useMutation(CREATE_PACIENTE, {
@@ -31,23 +43,14 @@ const FormReceta = () => {
   })
 
   const handleChange = e => {
-    setPaciente({
-      ...paciente,
+    setReceta({
+      ...receta,
       [e.target.name]: e.target.value
     })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    createPaciente({
-      variables: {
-        nombre: paciente.nombre,
-        apellidoPaterno: paciente.apellidoPaterno,
-        apellidoMaterno: paciente.apellidoMaterno,
-        fechaNacimiento: paciente.fechaNacimiento,
-        genero: paciente.genero
-      }
-    })
     navigate('/pacientes')
   }
 
@@ -59,90 +62,143 @@ const FormReceta = () => {
         <div className='rounded-2xl border border-stroke bg-white shadow-default    '>
           <div className='border-b border-stroke py-4 px-6.5  '>
             <h3 className='font-medium text-black  '>
-              Tus datos personales
+              Receta Medica
             </h3>
           </div>
-          <form className='grid grid-cols-5 p-6.5 gap-10' onSubmit={handleSubmit}>
+          <form className='grid grid-cols-12 p-6.5 gap-x-5' onSubmit={handleSubmit}>
 
-            <div className='lg:col-span-3 col-span-5'>
+            <div className='col-span-8' />
+
+            <div className='col-span-4'>
               <Input
-                name='nombre'
-                text='Nombre'
+                name='fecha'
+                text='Fecha de hoy'
+                type='date'
+                value={fecha}
+                placeholder='Ingresa el nombre del paciente'
+                onChange={setFecha}
+              />
+            </div>
+
+            <div className='md:col-span-10 col-span-9'>
+              <Input
+                name='nombreCompleto'
+                text='Nombre del paciente'
                 type='text'
-                placeholder='Ingresa tu nombre'
+                placeholder='Ingresa el nombre del paciente'
                 onChange={handleChange}
               />
+            </div>
 
-              <Input
-                name='apellidoPaterno'
-                text='Apellido Paterno'
-                type='text'
-                placeholder='Ingresa tu apellido paterno'
-                onChange={handleChange}
+            <div className='md:col-span-2 col-span-3 mt-5'>
+              <Button
+                text=''
+                type='submit'
+                icon={<AiOutlineUserAdd className='w-5 h-5' />}
               />
+            </div>
 
-              <Input
-                name='apellidoMaterno'
-                text='Apellido Materno'
-                type='text'
-                placeholder='Ingresa tu apellido materno'
-                onChange={handleChange}
-              />
-
+            <div className='col-span-3'>
               <Input
                 name='fechaNacimiento'
                 text='Fecha Nacimiento'
                 type='date'
                 onChange={handleChange}
               />
+            </div>
 
+            <div className='col-span-3'>
+              <Input
+                name='edad'
+                text='Edad'
+                type='number'
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className='col-span-6'>
               <Input
                 name='genero'
                 text='Genero'
                 type='text'
-                placeholder='Ingresa tu genero (M/F)'
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className='col-span-4'>
+
+              <Input
+                name='presionArterial'
+                text='Presion Arterial (mm/Hg)'
+                type='text'
                 onChange={handleChange}
               />
 
-              <Button
-                text='Registrar Paciente'
-                icon={<AiFillAlipayCircle />}
-                type='submit'
-                disabled={!paciente.nombre || !paciente.fechaNacimiento || !paciente.genero || loading}
+              <Input
+                name='frecuenciaCardiaca'
+                text='Frecuencia Cardiaca (xmin)'
+                type='text'
+                onChange={handleChange}
+              />
+              <Input
+                name='frecuenciaRespiratoria'
+                text='Frecuencia Respiratoria (xmin)'
+                type='text'
+                onChange={handleChange}
+              />
+              <Input
+                name='temperatura'
+                text='Temperatura (°C)'
+                type='text'
+                onChange={handleChange}
+              />
+              <Input
+                name='peso'
+                text='Peso (kg)'
+                type='text'
+                onChange={handleChange}
+              />
+              <Input
+                name='estatura'
+                text='Estatura (m)'
+                type='text'
+                onChange={handleChange}
+              />
+
+              <TextArea
+                name='alergias'
+                text='Alergias'
+                type='text'
+                numRows={2}
+                onChange={handleChange}
               />
             </div>
 
-            <div className='lg:col-span-2 col-span-5'>
-              <div className='mb-4 flex items-center gap-3'>
-                <img className='h-14 w-14 rounded-full' src={userThree} alt='User' />
-                <div>
-                  <span className='mb-1.5 text-black'>Edita tu foto</span>
-                  <span className='flex gap-2.5 text-sm'>Sube una nueva foto de perfil</span>
-                </div>
-              </div>
-
-              <div
-                id='FileUpload'
-                className='relative mb-5.5 block w-full cursor-pointer appearance-none rounded-xl border-2 border-dashed border-primary bg-gray-100py-4 px-4   sm:py-7.5'
-              >
-                <input
-                  type='file'
-                  name='file'
-                  onChange={(e) => { console.log(e.target.files[0]) }}
-                  accept='image/*'
-                  className='absolute inset-0 z-50 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-none'
-                />
-                <div className='flex flex-col items-center justify-center space-y-3'>
-                  <span className='flex h-10 w-10 items-center justify-center rounded-full border border-stroke bg-white    '>
-                    <AiOutlineCloudUpload />
-                  </span>
-                  <p>
-                    <span className='text-primary'>Click to upload</span> or
-                    drag and drop
-                  </p>
-                </div>
-              </div>
+            <div className='col-span-8'>
+              <TextArea
+                name='diagnostico'
+                text='Diagnostico'
+                type='text'
+                numRows={3}
+                onChange={handleChange}
+              />
+              <TextArea
+                name='tratamiento'
+                text='Tratamiento'
+                type='text'
+                numRows={15}
+                onChange={handleChange}
+              />
             </div>
+
+            <div className='col-span-12'>
+              <Button
+                text='Guardar Receta'
+                icon={<AiFillAlipayCircle />}
+                type='submit'
+              />
+            </div>
+
           </form>
         </div>
       </div>

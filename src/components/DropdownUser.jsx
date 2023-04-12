@@ -1,14 +1,20 @@
 import React, { useState, useRef } from 'react'
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
 import UserOne from '../images/user/user-01.png'
 import { AiOutlineDoubleLeft, AiOutlineUser } from 'react-icons/ai'
 
 const DropdownUser = () => {
+  const navigate = useNavigate()
+
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const trigger = useRef(null)
   const dropdown = useRef(null)
+
+  const handleSubmit = () => {
+    window.localStorage.removeItem('token')
+    navigate('/auth/login')
+  }
 
   return (
     <div className='relative'>
@@ -49,13 +55,12 @@ const DropdownUser = () => {
             </Link>
           </li>
           <li>
-            <Link
-              to='/auth/login'
-              className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base'
-            >
-              <AiOutlineDoubleLeft />
-              Cerrar Sesion
-            </Link>
+            <form onSubmit={handleSubmit}>
+              <button type='submit' className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base'>
+                <AiOutlineDoubleLeft />
+                Cerrar Sesion
+              </button>
+            </form>
           </li>
         </ul>
       </div>

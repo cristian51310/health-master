@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import Logo from '../images/logo/logo.png'
-import { AiOutlineApple, AiOutlineCalendar, AiOutlineClose, AiOutlineHome, AiOutlineTable, AiOutlineUser } from 'react-icons/ai'
+import { AiOutlineApple, AiOutlineCalendar, AiOutlineClose, AiOutlineContainer, AiOutlineHome, AiOutlineTable, AiOutlineUser } from 'react-icons/ai'
 
 const SidebarLink = ({ to, icon, text }) => {
   return (
@@ -61,21 +61,27 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               />
 
               <SidebarLink
-                to='/profile'
-                icon={<AiOutlineUser />}
-                text='Perfil'
-              />
-
-              <SidebarLink
                 to='/create/paciente'
                 icon={<AiOutlineApple />}
                 text='Crear Pacientes'
               />
 
               <SidebarLink
+                to='/create/receta'
+                icon={<AiOutlineContainer />}
+                text='Crear Receta'
+              />
+
+              <SidebarLink
                 to='/pacientes'
                 icon={<AiOutlineTable />}
                 text='Pacientes'
+              />
+
+              <SidebarLink
+                to='/profile'
+                icon={<AiOutlineUser />}
+                text='Perfil'
               />
 
             </ul>

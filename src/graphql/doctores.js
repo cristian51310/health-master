@@ -1,26 +1,5 @@
 import { gql } from '@apollo/client'
 
-export const GET_ALL_DOCTORES = gql`
-  query{
-    Doctores {
-      _id
-      nombre
-      apellidoPaterno
-      apellidoMaterno
-      fechaNacimiento
-      genero
-      rfc
-      curp
-      cedula
-      usuario {
-        _id
-        email
-        password
-      }
-    }
-  }
-`
-
 export const GET_DOCTOR = gql`
   query($id: ID!){
     Doctor(_id: $id) {
@@ -33,11 +12,6 @@ export const GET_DOCTOR = gql`
       rfc
       curp
       cedula
-      usuario {
-        _id
-        email
-        password
-      }
     }
   }
 `
@@ -53,7 +27,6 @@ export const DELETE_DOCTOR = gql`
 
 export const CREATE_DOCTOR = gql`
   mutation(
-    $usuarioId: ID!, 
     $nombre: String!, 
     $apellidoPaterno: String!, 
     $apellidoMaterno: String!, 
@@ -63,7 +36,6 @@ export const CREATE_DOCTOR = gql`
     $rfc: String!, 
     $cedula: String!){
     createDoctor(
-      usuarioId: $usuarioId, 
       nombre: $nombre,
       apellidoPaterno: $apellidoPaterno, 
       apellidoMaterno: $apellidoMaterno, 
@@ -73,7 +45,7 @@ export const CREATE_DOCTOR = gql`
       rfc: $rfc, 
       cedula: $cedula
     ){
-      usuarioId
+      _id
       nombre
     }
   }

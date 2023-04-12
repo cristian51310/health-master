@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Logo from '../../images/logo/logo.png'
 import { Link, useNavigate } from 'react-router-dom'
-import { AiOutlineKey, AiOutlineMail } from 'react-icons/ai'
+import { AiOutlineMail } from 'react-icons/ai'
 import Input from '../../components/Input'
 import { useMutation } from '@apollo/client'
 import { CREATE_USUARIO } from '../../graphql/usuarios.js'
@@ -12,7 +12,6 @@ const SignIn = () => {
   const navigate = useNavigate()
 
   const [doctor, setDoctor] = useState({
-    usuarioId: '',
     nombre: '',
     apellidoPaterno: '',
     apellidoMaterno: '',
@@ -24,6 +23,7 @@ const SignIn = () => {
   })
 
   const [usuario, setUsuario] = useState({
+    doctorId: '',
     email: '',
     password: ''
   })
@@ -42,22 +42,14 @@ const SignIn = () => {
     })
   }
 
-  const [createUsuario] = useMutation(CREATE_USUARIO)
+  const [createDoctor] = useMutation(CREATE_DOCTOR)
 
-  const [createDoctor, { loading }] = useMutation(CREATE_DOCTOR)
+  const [createUsuario, { loading }] = useMutation(CREATE_USUARIO)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const { data } = await createUsuario({
+    const { data } = await createDoctor({
       variables: {
-        email: usuario.email,
-        password: usuario.password
-      }
-    })
-    const idNewUsuario = (data.createUsuario._id)
-    await createDoctor({
-      variables: {
-        usuarioId: idNewUsuario,
         nombre: doctor.nombre,
         apellidoPaterno: doctor.apellidoPaterno,
         apellidoMaterno: doctor.apellidoMaterno,
@@ -68,6 +60,14 @@ const SignIn = () => {
         cedula: doctor.cedula
       }
     })
+    const idNewDoctor = (data.createDoctor._id)
+    await createUsuario({
+      variables: {
+        doctorId: idNewDoctor,
+        email: usuario.email,
+        password: usuario.password
+      }
+    })
     navigate('/auth/login')
   }
 
@@ -75,7 +75,7 @@ const SignIn = () => {
 
     <div className='bg-white min-h-screen text-gray-900 flex justify-center items-center'>
 
-      <div className='w-full py-10 md:px-48 px-10 flex-1'>
+      <div className='w-full py-4 md:px-48 px-10 flex-1'>
 
         <div className='mt-8 flex flex-col items-center'>
           <form onSubmit={handleSubmit} className='grid grid-cols-2 w-full gap-12'>
@@ -83,7 +83,7 @@ const SignIn = () => {
 
               <div className='flex items-center justify-start w-full gap-7 mb-8'>
                 <img src={Logo} className='w-20' />
-                <h1 className='text-5xl font-bold'>Registrate</h1>
+                <h1 className='text-5xl font-bold'>Bienvenido</h1>
               </div>
 
               <Input
@@ -170,15 +170,16 @@ const SignIn = () => {
                 type='password'
                 placeholder='**********'
                 limit={8}
-                icon={<AiOutlineKey />}
                 onChange={handleChangeUser}
               />
 
-              <Button
-                text='Registrar Paciente'
-                type='submit'
-                disabled={!doctor.nombre || !doctor.fechaNacimiento || !doctor.genero || !usuario.email || !usuario.password || loading}
-              />
+              <div className='flex mt-9'>
+                <Button
+                  text='Registrar Paciente'
+                  type='submit'
+                  disabled={!doctor.nombre || !doctor.fechaNacimiento || !doctor.genero || !usuario.email || !usuario.password || loading}
+                />
+              </div>
 
               <div className='mt-6 text-center'>
                 <p>

@@ -8,7 +8,6 @@ export const GET_ALL_PACIENTES = gql`
       apellidoPaterno
       apellidoMaterno
       fechaNacimiento
-      genero
     }
   }
 `

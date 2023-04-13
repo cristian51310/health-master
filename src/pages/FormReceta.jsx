@@ -1,17 +1,21 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import DefaultLayout from '../layout/DefaultLayout'
 import Input from '../components/Input'
-import { useParams, useNavigate } from 'react-router-dom'
-import { useMutation } from '@apollo/client'
-import { CREATE_PACIENTE, GET_ALL_PACIENTES } from '../graphql/pacientes'
-import { AiFillAlipayCircle, AiOutlineUserAdd } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
+import { useQuery, useMutation } from '@apollo/client'
+import { GET_ALL_PACIENTES } from '../graphql/pacientes'
+import { CREATE_RECETA } from '../graphql/recetas'
+import { AiFillAlipayCircle } from 'react-icons/ai'
 import { Button } from '../components/Button'
 import TextArea from '../components/TextArea'
+import jwtDecode from 'jwt-decode'
 
 const FormReceta = () => {
-  const params = useParams()
   const navigate = useNavigate()
+
+  // obtener datos del doctor
+  const token = window.localStorage.getItem('token')
+  const decodedToken = jwtDecode(token)
 
   const [fecha, setFecha] = useState(new Date().toISOString().substr(0, 10))
   useEffect(() => {
@@ -20,8 +24,6 @@ const FormReceta = () => {
   }, [])
 
   const [receta, setReceta] = useState({
-    doctorId: '',
-    pacienteId: '',
     presionArterial: '',
     frecuenciaCardiaca: '',
     frecuenciaRespiratoria: '',
@@ -33,15 +35,6 @@ const FormReceta = () => {
     tratamiento: ''
   })
 
-  const [createPaciente, { loading }] = useMutation(CREATE_PACIENTE, {
-    refetchQueries: [
-      {
-        query: GET_ALL_PACIENTES
-      },
-      'GetAllPacintes'
-    ]
-  })
-
   const handleChange = e => {
     setReceta({
       ...receta,
@@ -49,11 +42,40 @@ const FormReceta = () => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const [selectedPatient, setSelectedPatient] = useState('')
+  const { loading, error, data } = useQuery(GET_ALL_PACIENTES)
+
+  const [createReceta] = useMutation(CREATE_RECETA)
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    navigate('/pacientes')
+    await createReceta({
+      variables: {
+        doctorId: decodedToken.user.doctorId,
+        pacienteId: selectedPatient,
+        presionArterial: receta.presionArterial,
+        frecuenciaCardiaca: receta.frecuenciaCardiaca,
+        frecuenciaRespiratoria: receta.frecuenciaRespiratoria,
+        temperatura: receta.temperatura,
+        peso: receta.peso,
+        estatura: receta.estatura,
+        alergias: receta.alergias,
+        diagnostico: receta.diagnostico,
+        tratamiento: receta.tratamiento
+      }
+    })
+    navigate(`/paciente/${selectedPatient}`)
   }
 
+  const getAgeNameById = (id) => {
+    const patient = data.pacientes.find(p => p._id === id)
+    return patient ? patient.fechaNacimiento : ''
+  }
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error</p>
+
+  const patients = data.pacientes
   return (
     <DefaultLayout>
       <div className='grid grid-cols-1 gap-9'>
@@ -70,39 +92,28 @@ const FormReceta = () => {
             <div className='col-span-8' />
 
             <div className='col-span-4'>
-              <Input
-                name='fecha'
-                text='Fecha de hoy'
-                type='date'
-                value={fecha}
-                placeholder='Ingresa el nombre del paciente'
-                onChange={setFecha}
-              />
+              <p className=' text-right mr-3'>{fecha}</p>
             </div>
 
-            <div className='md:col-span-10 col-span-9'>
-              <Input
-                name='nombreCompleto'
-                text='Nombre del paciente'
-                type='text'
-                placeholder='Ingresa el nombre del paciente'
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className='md:col-span-2 col-span-3 mt-5'>
-              <Button
-                text=''
-                type='submit'
-                icon={<AiOutlineUserAdd className='w-5 h-5' />}
-              />
-            </div>
+            <select
+              id='patient'
+              className='col-span-12 my-4 mt-5 w-full rounded-xl border-[1.5px] border-stroke bg-transparent py-4 px-5 font-medium outline-none transition focus:border-primary active:border-primary'
+              name='pacienteId'
+              value={selectedPatient}
+              onChange={(e) => setSelectedPatient(e.target.value)}
+            >
+              <option value=''>Selecciona un paciente</option>
+              {patients.map(patient => (
+                <option key={patient._id} value={patient._id}>{patient.nombre + ' ' + patient.apellidoPaterno + ' ' + patient.apellidoMaterno}</option>
+              ))}
+            </select>
 
             <div className='col-span-3'>
               <Input
                 name='fechaNacimiento'
                 text='Fecha Nacimiento'
-                type='date'
+                type='text'
+                value={getAgeNameById(selectedPatient)}
                 onChange={handleChange}
               />
             </div>
@@ -198,7 +209,6 @@ const FormReceta = () => {
                 type='submit'
               />
             </div>
-
           </form>
         </div>
       </div>

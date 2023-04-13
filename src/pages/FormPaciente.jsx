@@ -37,9 +37,9 @@ const FormPaciente = () => {
     ]
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    createPaciente({
+    await createPaciente({
       variables: {
         nombre: paciente.nombre,
         apellidoPaterno: paciente.apellidoPaterno,

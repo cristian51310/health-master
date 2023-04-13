@@ -2,6 +2,9 @@ import React, { useState, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import UserOne from '../images/user/user-01.png'
 import { AiOutlineDoubleLeft, AiOutlineUser } from 'react-icons/ai'
+import jwtDecode from 'jwt-decode'
+import { useQuery } from '@apollo/client'
+import { GET_DOCTOR } from '../graphql/doctores'
 
 const DropdownUser = () => {
   const navigate = useNavigate()
@@ -16,6 +19,17 @@ const DropdownUser = () => {
     navigate('/auth/login')
   }
 
+  // obtener datos del doctor
+  const token = window.localStorage.getItem('token')
+  const decodedToken = jwtDecode(token)
+  const { loading, error, data } = useQuery(GET_DOCTOR, {
+    variables: {
+      id: decodedToken.user.doctorId
+    }
+  })
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error :(</p>
+
   return (
     <div className='relative'>
       <Link
@@ -25,7 +39,7 @@ const DropdownUser = () => {
       >
         <span className='hidden text-right lg:block'>
           <span className='block text-sm font-medium text-black  '>
-            Thomas Anree
+            {data.Doctor.nombre + ' ' + data.Doctor.apellidoPaterno + ' ' + data.Doctor.apellidoMaterno}
           </span>
         </span>
 

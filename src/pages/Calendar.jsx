@@ -46,19 +46,6 @@ const Calendar = () => {
                 <span className='font-medium text-black  '>
                   1
                 </span>
-                <div className='group h-16 w-full flex-grow cursor-pointer py-1 md:h-30'>
-                  <span className='group-hover:text-primary md:hidden'>
-                    More
-                  </span>
-                  <div className='event invisible absolute left-2 z-99 mb-1 flex w-[200%] flex-col rounded-sm border-l-[3px] border-primary bg-gray-300 px-3 py-1 text-left opacity-0 group-hover:visible group-hover:opacity-100   md:visible md:w-[190%] md:opacity-100'>
-                    <span className='event-name text-sm font-semibold text-black  '>
-                      Redesign Website
-                    </span>
-                    <span className='time text-sm font-medium text-black  '>
-                      1 Dec - 2 Dec
-                    </span>
-                  </div>
-                </div>
               </td>
               <td className='ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray-300     md:h-25 md:p-6 xl:h-31'>
                 <span className='font-medium text-black  '>
@@ -191,19 +178,6 @@ const Calendar = () => {
                 <span className='font-medium text-black  '>
                   25
                 </span>
-                <div className='group h-16 w-full flex-grow cursor-pointer py-1 md:h-30'>
-                  <span className='group-hover:text-primary md:hidden'>
-                    More
-                  </span>
-                  <div className='event invisible absolute left-2 z-99 mb-1 flex w-[300%] flex-col rounded-sm border-l-[3px] border-primary bg-gray-300 px-3 py-1 text-left opacity-0 group-hover:visible group-hover:opacity-100   md:visible md:w-[290%] md:opacity-100'>
-                    <span className='event-name text-sm font-semibold text-black  '>
-                      App Design
-                    </span>
-                    <span className='time text-sm font-medium text-black  '>
-                      25 Dec - 27 Dec
-                    </span>
-                  </div>
-                </div>
               </td>
               <td className='ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray-300     md:h-25 md:p-6 xl:h-31'>
                 <span className='font-medium text-black  '>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { AiOutlineCalendar, AiOutlineUser } from 'react-icons/ai'
+import { FormatDate } from '../js/formatDate'
 
 const PacienteCard = ({ paciente, children }) => {
   return (
@@ -14,7 +15,7 @@ const PacienteCard = ({ paciente, children }) => {
           </div>
           <div className='flex items-center my-2'>
             <AiOutlineCalendar className='mr-3' />
-            <p className='text-sm'>{paciente.fechaNacimiento}</p>
+            <p className='text-sm'>{FormatDate(paciente.fechaNacimiento)}</p>
           </div>
         </div>
 

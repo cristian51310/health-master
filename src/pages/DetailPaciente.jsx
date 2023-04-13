@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/client'
 import { DELETE_PACIENTE, GET_PACIENTE, GET_ALL_PACIENTES } from '../graphql/pacientes'
 import DefaultLayout from '../layout/DefaultLayout'
-import { AiOutlineWarning, AiOutlineCloseCircle } from 'react-icons/ai'
+import { AiOutlineWarning, AiOutlineCloseCircle, AiOutlineFilePdf } from 'react-icons/ai'
 import { ButtonDanger, ButtonWarning } from '../components/Button'
 import PacienteCard from '../components/PacienteCard'
 
@@ -17,18 +17,13 @@ const DetailPaciente = () => {
   })
 
   const [deletePaciente] = useMutation(DELETE_PACIENTE, {
-    refetchQueries: [
-      {
-        query: GET_ALL_PACIENTES
-      },
-      'GetAllPacintes'
-    ]
+    refetchQueries: [{ query: GET_ALL_PACIENTES }, 'GetAllPacintes']
   })
-
-  console.log(data)
 
   if (loading) return <p>Cargando...</p>
   if (error) return <p>Error :</p>
+
+  const recetas = data.paciente.receta
 
   return (
     <DefaultLayout>
@@ -57,14 +52,28 @@ const DetailPaciente = () => {
           </PacienteCard>
         </div>
 
-        <div className='xl:col-span-4 lg:col-span-4 md:col-span-3 sm:col-span-3 col-span-6 rounded-2xl border border-stroke bg-white shadow-xl min-h-screen'>
+        <div className='xl:col-span-4 lg:col-span-4 md:col-span-3 sm:col-span-3 col-span-6 rounded-2xl border border-stroke bg-white shadow-xl '>
           <div className='border-b border-stroke py-4 px-6.5  '>
-            <h3 className='font-medium text-black  '>
+            <h3 className='font-lg font-semibold text-black  '>
               Recetas de {data.paciente.nombre}
             </h3>
           </div>
-          <div className='grid grid-cols-5 p-6.5 gap-10'>
-            Recetas
+          <div className='grid grid-cols-1 p-6.5 gap-8'>
+            <p className=' text-lg'>Recetas Medicas</p>
+
+            {recetas.map((receta, index) => (
+              <div key={index} className='grid grid-cols-12 bg-gray-200 shadow-lg shadow-black/10 rounded-xl p-5'>
+                <div className='col-span-11'>
+                  <p>Diagnóstico: {receta.diagnostico}</p>
+                  <p>Fecha de creación: {new Date(Number(receta.createdAt)).toLocaleString('es', { dateStyle: 'long', timeStyle: 'short', hour12: true })}</p>
+                </div>
+                <div className='col-span-1'>
+                  <ButtonDanger
+                    icon={<AiOutlineFilePdf />}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

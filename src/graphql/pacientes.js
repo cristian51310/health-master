@@ -5,6 +5,7 @@ export const GET_ALL_PACIENTES = gql`
     pacientes {
       _id
       nombre
+      genero
       apellidoPaterno
       apellidoMaterno
       fechaNacimiento
@@ -20,6 +21,11 @@ export const GET_PACIENTE = gql`
       apellidoPaterno
       apellidoMaterno
       fechaNacimiento
+      receta {
+        _id
+        diagnostico
+        createdAt
+      }
       genero
       createdAt
     }

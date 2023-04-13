@@ -25,6 +25,18 @@ export const DELETE_RECETA = gql`
   }
 `
 
+export const OBTENER_RECETAS_DE_PACIENTE = gql`
+  query($id: ID!){
+    paciente(_id: $id) {
+      receta {
+        _id
+        diagnostico
+        createdAt
+      }
+    }
+  }
+`
+
 export const CREATE_RECETA = gql`
   mutation($doctorId: ID!, $pacienteId: ID!, $presionArterial: String!, $frecuenciaCardiaca: String!, $frecuenciaRespiratoria: String!, $temperatura: String!, $peso: String!, $estatura: String!, $alergias: String!, $diagnostico: String!, $tratamiento: String!){createReceta(doctorId: $doctorId, pacienteId: $pacienteId, presionArterial: $presionArterial, frecuenciaCardiaca: $frecuenciaCardiaca, frecuenciaRespiratoria: $frecuenciaRespiratoria, temperatura: $temperatura, peso: $peso, estatura: $estatura, alergias: $alergias, diagnostico: $diagnostico, tratamiento: $tratamiento) {
   paciente {

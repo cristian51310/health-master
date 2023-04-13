@@ -16,7 +16,6 @@ const SignIn = () => {
     apellidoPaterno: '',
     apellidoMaterno: '',
     fechaNacimiento: '',
-    genero: '',
     curp: '',
     rfc: '',
     cedula: ''
@@ -27,6 +26,12 @@ const SignIn = () => {
     email: '',
     password: ''
   })
+
+  const [gender, setGender] = useState('masculino')
+
+  const handleGenderChange = (e) => {
+    setGender(e.target.value)
+  }
 
   const handleChangeDoctor = (e) => {
     setDoctor({
@@ -54,7 +59,7 @@ const SignIn = () => {
         apellidoPaterno: doctor.apellidoPaterno,
         apellidoMaterno: doctor.apellidoMaterno,
         fechaNacimiento: doctor.fechaNacimiento,
-        genero: doctor.genero,
+        genero: gender,
         curp: doctor.curp,
         rfc: doctor.rfc,
         cedula: doctor.cedula
@@ -117,13 +122,17 @@ const SignIn = () => {
                 onChange={handleChangeDoctor}
               />
 
-              <Input
-                name='genero'
-                text='Genero'
-                placeholder='Ingresa tu genero (M/F)'
-                type='text'
-                onChange={handleChangeDoctor}
-              />
+              <div>
+                <label className=' text-black'>Genero</label>
+                <select
+                  value={gender}
+                  onChange={handleGenderChange}
+                  className='relative col-span-12 mb-4 mt-2.5 w-full rounded-xl border-[2.5px] border-stroke bg-transparent py-3.5 px-5 font-medium outline-none transition focus:border-primary active:border-primary'
+                >
+                  <option value='masculino'>Masculino</option>
+                  <option value='femenino'>Femenino</option>
+                </select>
+              </div>
             </div>
 
             <div className='md:col-span-1 col-span-2 mt-2'>

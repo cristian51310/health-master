@@ -16,7 +16,7 @@ const TextArea = ({ text, value, type, placeholder, name, defaultValue, onChange
           defaultValue={defaultValue}
           onChange={onChange}
           maxLength={limit}
-          className='w-full rounded-xl border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary'
+          className='w-full rounded-xl border-[2.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary'
         />
       </div>
     </div>

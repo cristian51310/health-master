@@ -9,9 +9,18 @@ import { AiFillAlipayCircle } from 'react-icons/ai'
 import { Button } from '../components/Button'
 import TextArea from '../components/TextArea'
 import jwtDecode from 'jwt-decode'
+import { FormatDate } from '../js/formatDate'
 
 const FormReceta = () => {
   const navigate = useNavigate()
+
+  function calcularEdad (fechaNacimiento) {
+    const fechaNacimientoMs = fechaNacimiento// Convertir fecha Unix a milisegundos
+    const fechaNacimientoObj = new Date(fechaNacimientoMs) // Crear objeto Date
+    const edadMs = Date.now() - fechaNacimientoObj.getTime() // Calcular diferencia en milisegundos
+    const edad = new Date(edadMs) // Crear objeto Date a partir de la diferencia de tiempo
+    return Math.abs(edad.getUTCFullYear() - 1970) // Obtener la edad en años
+  }
 
   // obtener datos del doctor
   const token = window.localStorage.getItem('token')
@@ -67,9 +76,14 @@ const FormReceta = () => {
     navigate(`/paciente/${selectedPatient}`)
   }
 
-  const getAgeNameById = (id) => {
+  const getDateById = (id) => {
     const patient = data.pacientes.find(p => p._id === id)
     return patient ? patient.fechaNacimiento : ''
+  }
+
+  const getGenderById = (id) => {
+    const patient = data.pacientes.find(p => p._id === id)
+    return patient ? patient.genero : ''
   }
 
   if (loading) return <p>Loading...</p>
@@ -87,17 +101,17 @@ const FormReceta = () => {
               Receta Medica
             </h3>
           </div>
-          <form className='grid grid-cols-12 p-6.5 gap-x-5' onSubmit={handleSubmit}>
+          <form className='grid grid-cols-12 p-8 px-10 gap-x-7 gap-y-3' onSubmit={handleSubmit}>
 
             <div className='col-span-8' />
 
             <div className='col-span-4'>
-              <p className=' text-right mr-3'>{fecha}</p>
+              <p className=' text-right mr-3 mb-3 mt-3'>Fecha: {fecha}</p>
             </div>
 
             <select
               id='patient'
-              className='col-span-12 my-4 mt-5 w-full rounded-xl border-[1.5px] border-stroke bg-transparent py-4 px-5 font-medium outline-none transition focus:border-primary active:border-primary'
+              className='col-span-12 my-4 mt-5 w-full rounded-xl border-[2.5px] border-stroke bg-transparent py-4 px-5 font-medium outline-none transition focus:border-primary active:border-primary'
               name='pacienteId'
               value={selectedPatient}
               onChange={(e) => setSelectedPatient(e.target.value)}
@@ -113,7 +127,7 @@ const FormReceta = () => {
                 name='fechaNacimiento'
                 text='Fecha Nacimiento'
                 type='text'
-                value={getAgeNameById(selectedPatient)}
+                value={FormatDate(getDateById(selectedPatient))}
                 onChange={handleChange}
               />
             </div>
@@ -123,7 +137,7 @@ const FormReceta = () => {
                 name='edad'
                 text='Edad'
                 type='number'
-                onChange={handleChange}
+                value={calcularEdad(getDateById(selectedPatient))}
               />
             </div>
 
@@ -132,6 +146,7 @@ const FormReceta = () => {
                 name='genero'
                 text='Genero'
                 type='text'
+                value={getGenderById(selectedPatient)}
                 onChange={handleChange}
               />
             </div>

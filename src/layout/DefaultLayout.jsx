@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
+import { Toaster } from 'sonner'
 
 const DefaultLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -13,6 +14,7 @@ const DefaultLayout = ({ children }) => {
           <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           <main>
             <div className='mx-auto max-w-screen-2xl p-4 md:p-8 2xl:p-10'>
+              <Toaster richColors closeButton />
               {children}
             </div>
           </main>

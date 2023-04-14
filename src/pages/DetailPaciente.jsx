@@ -2,9 +2,42 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/client'
 import { DELETE_PACIENTE, GET_PACIENTE, GET_ALL_PACIENTES } from '../graphql/pacientes'
 import DefaultLayout from '../layout/DefaultLayout'
-import { AiOutlineWarning, AiOutlineCloseCircle, AiOutlineFilePdf } from 'react-icons/ai'
-import { ButtonDanger, ButtonWarning } from '../components/Button'
+import { AiOutlineCloseCircle, AiOutlineFilePdf } from 'react-icons/ai'
+import { ButtonDanger } from '../components/Button'
 import PacienteCard from '../components/PacienteCard'
+import { Document, Page, Text, View, PDFDownloadLink } from '@react-pdf/renderer'
+
+const ViewPDF = ({ data, receta }) => {
+  return (
+    <Document>
+      <Page size='A5' orientation='landscape'>
+        <View>
+          <Text> {receta.createdAt} </Text>
+
+          <Text> {data.paciente.nombre} </Text>
+          <Text> {data.paciente.apellidoPaterno} </Text>
+          <Text> {data.paciente.apellidoMaterno} </Text>
+          <Text> {data.paciente.fechaNacimiento} </Text>
+
+          <Text> {receta.alergias} </Text>
+          <Text> {receta.diagnostico} </Text>
+          <Text> {receta.estatura} </Text>
+          <Text> {receta.frecuenciaCardiaca} </Text>
+          <Text> {receta.frecuenciaRespiratoria} </Text>
+          <Text> {receta.peso} </Text>
+          <Text> {receta.presionArterial} </Text>
+          <Text> {receta.temperatura} </Text>
+          <Text> {receta.tratamiento} </Text>
+
+          <Text> {receta.doctor[0].nombre} </Text>
+          <Text> {receta.doctor[0].apellidoPaterno} </Text>
+          <Text> {receta.doctor[0].apellidoMaterno} </Text>
+          <Text> {receta.doctor[0].cedula} </Text>
+        </View>
+      </Page>
+    </Document>
+  )
+}
 
 const DetailPaciente = () => {
   const navigate = useNavigate()
@@ -24,6 +57,7 @@ const DetailPaciente = () => {
   if (error) return <p>Error :</p>
 
   const recetas = data.paciente.receta
+  console.log(recetas[0])
 
   return (
     <DefaultLayout>
@@ -32,10 +66,6 @@ const DetailPaciente = () => {
           <PacienteCard
             paciente={data.paciente}
           >
-            <ButtonWarning
-              icon={<AiOutlineWarning />}
-              text='Editar'
-            />
             <ButtonDanger
               icon={<AiOutlineCloseCircle />}
               text='Eliminar'
@@ -68,9 +98,9 @@ const DetailPaciente = () => {
                   <p>Fecha de creación: {new Date(Number(receta.createdAt)).toLocaleString('es', { dateStyle: 'long', timeStyle: 'short', hour12: true })}</p>
                 </div>
                 <div className='col-span-1'>
-                  <ButtonDanger
-                    icon={<AiOutlineFilePdf />}
-                  />
+                  <PDFDownloadLink document={<ViewPDF receta={receta} data={data} />} fileName='docu.pdf'>
+                    <ButtonDanger icon={<AiOutlineFilePdf />} />
+                  </PDFDownloadLink>
                 </div>
               </div>
             ))}

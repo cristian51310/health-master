@@ -136,7 +136,7 @@ const FormReceta = () => {
               <Input
                 name='edad'
                 text='Edad'
-                type='number'
+                type='text'
                 value={calcularEdad(getDateById(selectedPatient))}
               />
             </div>
@@ -222,6 +222,7 @@ const FormReceta = () => {
                 text='Guardar Receta'
                 icon={<AiFillAlipayCircle />}
                 type='submit'
+                disabled={!receta.diagnostico || !receta.tratamiento}
               />
             </div>
           </form>

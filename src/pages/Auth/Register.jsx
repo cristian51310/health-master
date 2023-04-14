@@ -31,6 +31,7 @@ const SignIn = () => {
 
   const handleGenderChange = (e) => {
     setGender(e.target.value)
+    console.log(gender)
   }
 
   const handleChangeDoctor = (e) => {
@@ -49,7 +50,7 @@ const SignIn = () => {
 
   const [createDoctor] = useMutation(CREATE_DOCTOR)
 
-  const [createUsuario, { loading }] = useMutation(CREATE_USUARIO)
+  const [createUsuario] = useMutation(CREATE_USUARIO)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -186,7 +187,7 @@ const SignIn = () => {
                 <Button
                   text='Registrar Paciente'
                   type='submit'
-                  disabled={!doctor.nombre || !doctor.fechaNacimiento || !doctor.genero || !usuario.email || !usuario.password || loading}
+                  disabled={!doctor.nombre || !doctor.fechaNacimiento || !usuario.email || !usuario.password}
                 />
               </div>
 

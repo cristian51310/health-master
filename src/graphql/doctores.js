@@ -30,7 +30,7 @@ export const CREATE_DOCTOR = gql`
     $nombre: String!, 
     $apellidoPaterno: String!, 
     $apellidoMaterno: String!, 
-    $fechaNacimiento: String!, 
+    $fechaNacimiento: Date!, 
     $genero: String!, 
     $curp: String!, 
     $rfc: String!, 

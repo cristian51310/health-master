@@ -31,7 +31,6 @@ const Login = () => {
         password: usuario.password
       }
     })
-
     if (!error) {
       console.log(data.login)
       window.localStorage.setItem('token', data.login)
@@ -54,7 +53,6 @@ const Login = () => {
                 Inicia Sesion
               </h1>
             </div>
-
             <div className='w-full flex-1 mt-8 px-4'>
               <form onSubmit={handleSubmit}>
                 <Input

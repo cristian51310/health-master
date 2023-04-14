@@ -22,12 +22,24 @@ export const GET_PACIENTE = gql`
       apellidoMaterno
       fechaNacimiento
       receta {
-        _id
+        alergias
+        diagnostico
+        estatura
+        frecuenciaCardiaca
+        frecuenciaRespiratoria
+        peso
+        presionArterial
+        temperatura
+        tratamiento
         diagnostico
         createdAt
+        doctor {
+          nombre
+          apellidoPaterno
+          apellidoMaterno
+          cedula
+        }
       }
-      genero
-      createdAt
     }
   }
 `
@@ -45,7 +57,7 @@ export const CREATE_PACIENTE = gql`
     $nombre: String!, 
     $apellidoPaterno: String!, 
     $apellidoMaterno: String!, 
-    $fechaNacimiento: String!, 
+    $fechaNacimiento: Date!, 
     $genero: String!){
       createPaciente(
         nombre: $nombre, 

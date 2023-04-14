@@ -8,6 +8,7 @@ import { CREATE_PACIENTE, GET_ALL_PACIENTES } from '../graphql/pacientes'
 import userThree from '../images/user/user-01.png'
 import { AiOutlineCloudUpload, AiFillAlipayCircle } from 'react-icons/ai'
 import { Button } from '../components/Button'
+import { toast } from 'sonner'
 
 const FormPaciente = () => {
   const params = useParams()
@@ -48,7 +49,8 @@ const FormPaciente = () => {
         genero: gender
       }
     })
-    navigate('/pacientes')
+    // navigate('/pacientes')
+    toast.success('Hola')
   }
 
   return (
@@ -120,7 +122,7 @@ const FormPaciente = () => {
                 text='Registrar Paciente'
                 icon={<AiFillAlipayCircle />}
                 type='submit'
-                disabled={!paciente.nombre || !paciente.fechaNacimiento || !paciente.genero || loading}
+                disabled={!paciente.nombre || !paciente.fechaNacimiento || loading}
               />
             </div>
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import UserOne from '../images/user/user-01.png'
+import UserOne from '../images/user/user-06.png'
 import { AiOutlineDoubleLeft, AiOutlineUser } from 'react-icons/ai'
 import jwtDecode from 'jwt-decode'
 import { useQuery } from '@apollo/client'

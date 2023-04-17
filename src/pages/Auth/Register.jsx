@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Logo from '../../images/logo/logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineMail } from 'react-icons/ai'
@@ -7,75 +7,57 @@ import { useMutation } from '@apollo/client'
 import { CREATE_USUARIO } from '../../graphql/usuarios.js'
 import { CREATE_DOCTOR } from '../../graphql/doctores.js'
 import { Button } from '../../components/Button'
+import { useFormik } from 'formik'
+import Select from 'react-select'
+
+const options = [
+  { value: 'masculino', label: 'Masculino' },
+  { value: 'femenino', label: 'Femenino' }
+]
 
 const SignIn = () => {
   const navigate = useNavigate()
-
-  const [doctor, setDoctor] = useState({
-    nombre: '',
-    apellidoPaterno: '',
-    apellidoMaterno: '',
-    fechaNacimiento: '',
-    curp: '',
-    rfc: '',
-    cedula: ''
-  })
-
-  const [usuario, setUsuario] = useState({
-    doctorId: '',
-    email: '',
-    password: ''
-  })
-
-  const [gender, setGender] = useState('masculino')
-
-  const handleGenderChange = (e) => {
-    setGender(e.target.value)
-    console.log(gender)
-  }
-
-  const handleChangeDoctor = (e) => {
-    setDoctor({
-      ...doctor,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  const handleChangeUser = (e) => {
-    setUsuario({
-      ...usuario,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  const [createDoctor] = useMutation(CREATE_DOCTOR)
-
+  const [createDoctor, { loading }] = useMutation(CREATE_DOCTOR)
   const [createUsuario] = useMutation(CREATE_USUARIO)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const { data } = await createDoctor({
-      variables: {
-        nombre: doctor.nombre,
-        apellidoPaterno: doctor.apellidoPaterno,
-        apellidoMaterno: doctor.apellidoMaterno,
-        fechaNacimiento: doctor.fechaNacimiento,
-        genero: gender,
-        curp: doctor.curp,
-        rfc: doctor.rfc,
-        cedula: doctor.cedula
-      }
-    })
-    const idNewDoctor = (data.createDoctor._id)
-    await createUsuario({
-      variables: {
-        doctorId: idNewDoctor,
-        email: usuario.email,
-        password: usuario.password
-      }
-    })
-    navigate('/auth/login')
-  }
+  const formik = useFormik({
+    initialValues: {
+      nombre: '',
+      apellidoPaterno: '',
+      apellidoMaterno: '',
+      fechaNacimiento: '',
+      genero: '',
+      curp: '',
+      rfc: '',
+      cedula: '',
+      doctorId: '',
+      email: '',
+      password: ''
+    },
+    onSubmit: async (values, { resetForm }) => {
+      const { data } = await createDoctor({
+        variables: {
+          nombre: values.nombre,
+          apellidoPaterno: values.apellidoPaterno,
+          apellidoMaterno: values.apellidoMaterno,
+          fechaNacimiento: values.fechaNacimiento,
+          genero: values.genero,
+          curp: values.curp,
+          rfc: values.rfc,
+          cedula: values.cedula
+        }
+      })
+      const idNewDoctor = (data.createDoctor._id)
+      await createUsuario({
+        variables: {
+          doctorId: idNewDoctor,
+          email: values.email,
+          password: values.password
+        }
+      })
+      navigate('/auth/login')
+    }
+  })
 
   return (
 
@@ -84,7 +66,10 @@ const SignIn = () => {
       <div className='w-full py-4 md:px-48 px-10 flex-1'>
 
         <div className='mt-8 flex flex-col items-center'>
-          <form onSubmit={handleSubmit} className='grid grid-cols-2 w-full gap-12'>
+          <form
+            onSubmit={formik.handleSubmit}
+            className='grid grid-cols-2 w-full gap-12'
+          >
             <div className='md:col-span-1 col-span-2'>
 
               <div className='flex items-center justify-start w-full gap-7 mb-8'>
@@ -97,7 +82,9 @@ const SignIn = () => {
                 text='Nombre'
                 type='text'
                 placeholder='Ingresa tu nombre'
-                onChange={handleChangeDoctor}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.nombre}
               />
 
               <Input
@@ -105,7 +92,9 @@ const SignIn = () => {
                 text='Apellido Paterno'
                 type='text'
                 placeholder='Ingresa tu primer apellido'
-                onChange={handleChangeDoctor}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.apellidoPaterno}
               />
 
               <Input
@@ -113,26 +102,31 @@ const SignIn = () => {
                 text='Apellido Materno'
                 type='text'
                 placeholder='Ingresa tu segundo apellido'
-                onChange={handleChangeDoctor}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.apellidoMaterno}
               />
 
               <Input
                 name='fechaNacimiento'
                 text='Fecha Nacimiento'
                 type='date'
-                onChange={handleChangeDoctor}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.fechaNacimiento}
               />
 
               <div>
                 <label className=' text-black'>Genero</label>
-                <select
-                  value={gender}
-                  onChange={handleGenderChange}
-                  className='relative col-span-12 mb-4 mt-2.5 w-full rounded-xl border-[2.5px] border-stroke bg-transparent py-3.5 px-5 font-medium outline-none transition focus:border-primary active:border-primary'
-                >
-                  <option value='masculino'>Masculino</option>
-                  <option value='femenino'>Femenino</option>
-                </select>
+                <Select
+                  name='genero'
+                  options={options}
+                  value={options.find((option) => option.value === formik.values.genero)}
+                  defaultValue={options.find((option) => option.value === 'masculino')}
+                  onChange={(option) => formik.setFieldValue('genero', option.value)}
+                  onBlur={formik.handleBlur}
+                  className='mt-3 active:border-blue-500 rounded-xl'
+                />
               </div>
             </div>
 
@@ -144,7 +138,9 @@ const SignIn = () => {
                 type='text'
                 placeholder='Ingresa tu curp (18 digitos)'
                 limit={18}
-                onChange={handleChangeDoctor}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.curp}
               />
 
               <Input
@@ -153,7 +149,9 @@ const SignIn = () => {
                 type='text'
                 placeholder='Ingresa tu rfc'
                 limit={18}
-                onChange={handleChangeDoctor}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.rfc}
               />
 
               <Input
@@ -162,7 +160,9 @@ const SignIn = () => {
                 type='text'
                 placeholder='ingresa tu cedula'
                 limit={18}
-                onChange={handleChangeDoctor}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.cedula}
               />
 
               <Input
@@ -171,7 +171,9 @@ const SignIn = () => {
                 type='email'
                 placeholder='ejemplo@ejemplo.com'
                 icon={<AiOutlineMail />}
-                onChange={handleChangeUser}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
               />
 
               <Input
@@ -180,14 +182,16 @@ const SignIn = () => {
                 type='password'
                 placeholder='**********'
                 limit={8}
-                onChange={handleChangeUser}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
               />
 
               <div className='flex mt-9'>
                 <Button
                   text='Registrar Paciente'
                   type='submit'
-                  disabled={!doctor.nombre || !doctor.fechaNacimiento || !usuario.email || !usuario.password}
+                  disabled={loading}
                 />
               </div>
 

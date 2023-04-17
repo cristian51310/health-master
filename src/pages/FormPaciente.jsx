@@ -1,57 +1,51 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React from 'react'
 import DefaultLayout from '../layout/DefaultLayout'
 import Input from '../components/Input'
-import { useParams, useNavigate } from 'react-router-dom'
+// eslint-disable-next-line no-unused-vars
+import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import { CREATE_PACIENTE, GET_ALL_PACIENTES } from '../graphql/pacientes'
-import userThree from '../images/user/user-01.png'
-import { AiOutlineCloudUpload, AiFillAlipayCircle } from 'react-icons/ai'
+import { AiFillAlipayCircle } from 'react-icons/ai'
 import { Button } from '../components/Button'
 import { toast } from 'sonner'
+import { useFormik } from 'formik'
+import Select from 'react-select'
+
+const options = [
+  { value: 'masculino', label: 'Masculino' },
+  { value: 'femenino', label: 'Femenino' }
+]
 
 const FormPaciente = () => {
-  const params = useParams()
-  const navigate = useNavigate()
-
-  const [paciente, setPaciente] = useState({
-    nombre: '',
-    apellidoPaterno: '',
-    apellidoMaterno: '',
-    fechaNacimiento: ''
-  })
-
-  const handleChange = e => {
-    setPaciente({
-      ...paciente,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  const [gender, setGender] = useState('masculino')
-
-  const handleGenderChange = (e) => {
-    setGender(e.target.value)
-  }
+  // const navigate = useNavigate()
 
   const [createPaciente, { loading }] = useMutation(CREATE_PACIENTE, {
     refetchQueries: [{ query: GET_ALL_PACIENTES }, 'GetAllPacintes']
   })
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    await createPaciente({
-      variables: {
-        nombre: paciente.nombre,
-        apellidoPaterno: paciente.apellidoPaterno,
-        apellidoMaterno: paciente.apellidoMaterno,
-        fechaNacimiento: paciente.fechaNacimiento,
-        genero: gender
-      }
-    })
-    // navigate('/pacientes')
-    toast.success('Hola')
-  }
+  const formik = useFormik({
+    initialValues: {
+      nombre: '',
+      apellidoPaterno: '',
+      apellidoMaterno: '',
+      fechaNacimiento: '',
+      genero: ''
+    },
+    onSubmit: async (values, { resetForm }) => {
+      resetForm()
+      await createPaciente({
+        variables: {
+          nombre: values.nombre,
+          apellidoPaterno: values.apellidoPaterno,
+          apellidoMaterno: values.apellidoMaterno,
+          fechaNacimiento: values.fechaNacimiento,
+          genero: values.genero
+        }
+      })
+      // navigate('/pacientes')
+      toast.success('Paciente Creado Correctamente')
+    }
+  })
 
   return (
     <DefaultLayout>
@@ -64,7 +58,10 @@ const FormPaciente = () => {
               Tus datos personales
             </h3>
           </div>
-          <form className='grid grid-cols-12 gap-x-6 p-9' onSubmit={handleSubmit}>
+          <form
+            className='grid grid-cols-12 gap-x-6 p-9'
+            onSubmit={formik.handleSubmit}
+          >
 
             <div className='col-span-12'>
               <Input
@@ -72,7 +69,9 @@ const FormPaciente = () => {
                 text='Nombre'
                 type='text'
                 placeholder='Ingresa tu nombre'
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.nombre}
               />
             </div>
 
@@ -82,7 +81,9 @@ const FormPaciente = () => {
                 text='Apellido Paterno'
                 type='text'
                 placeholder='Ingresa tu apellido paterno'
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.apellidoPaterno}
               />
             </div>
 
@@ -92,7 +93,9 @@ const FormPaciente = () => {
                 text='Apellido Materno'
                 type='text'
                 placeholder='Ingresa tu apellido materno'
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.apellidoMaterno}
               />
             </div>
 
@@ -101,20 +104,23 @@ const FormPaciente = () => {
                 name='fechaNacimiento'
                 text='Fecha Nacimiento'
                 type='date'
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.fechaNacimiento}
               />
             </div>
 
             <div className='col-span-6'>
               <label className=' text-black'>Genero</label>
-              <select
-                value={gender}
-                onChange={handleGenderChange}
-                className='relative col-span-12 mb-4 mt-2.5 w-full rounded-xl border-[2.5px] border-stroke bg-transparent py-3.5 px-5 font-medium outline-none transition focus:border-primary active:border-primary'
-              >
-                <option value='masculino'>Masculino</option>
-                <option value='femenino'>Femenino</option>
-              </select>
+              <Select
+                name='genero'
+                options={options}
+                value={options.find((option) => option.value === formik.values.genero)}
+                defaultValue={options.find((option) => option.value === 'masculino')}
+                onChange={(option) => formik.setFieldValue('genero', option.value)}
+                onBlur={formik.handleBlur}
+                className='mt-3 active:border-blue-500 rounded-xl w-full'
+              />
             </div>
 
             <div className='col-span-12'>
@@ -122,7 +128,7 @@ const FormPaciente = () => {
                 text='Registrar Paciente'
                 icon={<AiFillAlipayCircle />}
                 type='submit'
-                disabled={!paciente.nombre || !paciente.fechaNacimiento || loading}
+                disabled={!formik.values.nombre || loading}
               />
             </div>
 

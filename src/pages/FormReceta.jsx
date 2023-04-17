@@ -10,9 +10,43 @@ import { Button } from '../components/Button'
 import TextArea from '../components/TextArea'
 import jwtDecode from 'jwt-decode'
 import { FormatDate } from '../js/formatDate'
+import { useFormik } from 'formik'
+import Select from 'react-select'
 
 const FormReceta = () => {
   const navigate = useNavigate()
+
+  const formik = useFormik({
+    initialValues: {
+      presionArterial: '',
+      frecuenciaCardiaca: '',
+      frecuenciaRespiratoria: '',
+      temperatura: '',
+      peso: '',
+      estatura: '',
+      alergias: '',
+      diagnostico: '',
+      tratamiento: ''
+    },
+    onSubmit: async (values, { resetForm }) => {
+      await createReceta({
+        variables: {
+          doctorId: decodedToken.user.doctorId,
+          pacienteId: selectedPatient,
+          presionArterial: values.presionArterial,
+          frecuenciaCardiaca: values.frecuenciaCardiaca,
+          frecuenciaRespiratoria: values.frecuenciaRespiratoria,
+          temperatura: values.temperatura,
+          peso: values.peso,
+          estatura: values.estatura,
+          alergias: values.alergias,
+          diagnostico: values.diagnostico,
+          tratamiento: values.tratamiento
+        }
+      })
+      navigate(`/paciente/${selectedPatient}`)
+    }
+  })
 
   function calcularEdad (fechaNacimiento) {
     const fechaNacimientoMs = fechaNacimiento// Convertir fecha Unix a milisegundos
@@ -32,49 +66,10 @@ const FormReceta = () => {
     setFecha(date)
   }, [])
 
-  const [receta, setReceta] = useState({
-    presionArterial: '',
-    frecuenciaCardiaca: '',
-    frecuenciaRespiratoria: '',
-    temperatura: '',
-    peso: '',
-    estatura: '',
-    alergias: '',
-    diagnostico: '',
-    tratamiento: ''
-  })
-
-  const handleChange = e => {
-    setReceta({
-      ...receta,
-      [e.target.name]: e.target.value
-    })
-  }
-
   const [selectedPatient, setSelectedPatient] = useState('')
   const { loading, error, data } = useQuery(GET_ALL_PACIENTES)
 
   const [createReceta] = useMutation(CREATE_RECETA)
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    await createReceta({
-      variables: {
-        doctorId: decodedToken.user.doctorId,
-        pacienteId: selectedPatient,
-        presionArterial: receta.presionArterial,
-        frecuenciaCardiaca: receta.frecuenciaCardiaca,
-        frecuenciaRespiratoria: receta.frecuenciaRespiratoria,
-        temperatura: receta.temperatura,
-        peso: receta.peso,
-        estatura: receta.estatura,
-        alergias: receta.alergias,
-        diagnostico: receta.diagnostico,
-        tratamiento: receta.tratamiento
-      }
-    })
-    navigate(`/paciente/${selectedPatient}`)
-  }
 
   const getDateById = (id) => {
     const patient = data.pacientes.find(p => p._id === id)
@@ -90,6 +85,12 @@ const FormReceta = () => {
   if (error) return <p>Error</p>
 
   const patients = data.pacientes
+
+  const options = patients.map((patient) => ({
+    value: patient._id,
+    label: patient.nombre + ' ' + patient.apellidoPaterno + ' ' + patient.apellidoMaterno
+  }))
+
   return (
     <DefaultLayout>
       <div className='grid grid-cols-1 gap-9'>
@@ -101,7 +102,10 @@ const FormReceta = () => {
               Receta Medica
             </h3>
           </div>
-          <form className='grid grid-cols-12 p-8 px-10 gap-x-7 gap-y-3' onSubmit={handleSubmit}>
+          <form
+            className='grid grid-cols-12 p-8 px-10 gap-x-7 gap-y-3'
+            onSubmit={formik.handleSubmit}
+          >
 
             <div className='col-span-8' />
 
@@ -122,13 +126,24 @@ const FormReceta = () => {
               ))}
             </select>
 
+            <div className='col-span-12 mb-5'>
+              <label className=' text-black'>Selecciona un paciente:</label>
+              <Select
+                name='genero'
+                options={options}
+                value={options.find((option) => option.value._id)}
+                onChange={(option) => setSelectedPatient(option.value)}
+                className='mt-3 active:border-blue-500 rounded-xl'
+              />
+            </div>
+
             <div className='col-span-3'>
               <Input
                 name='fechaNacimiento'
                 text='Fecha Nacimiento'
                 type='text'
                 value={FormatDate(getDateById(selectedPatient))}
-                onChange={handleChange}
+                onChange={formik.handleChange}
               />
             </div>
 
@@ -147,7 +162,7 @@ const FormReceta = () => {
                 text='Genero'
                 type='text'
                 value={getGenderById(selectedPatient)}
-                onChange={handleChange}
+                onChange={formik.handleChange}
               />
             </div>
 
@@ -157,38 +172,49 @@ const FormReceta = () => {
                 name='presionArterial'
                 text='Presion Arterial (mm/Hg)'
                 type='text'
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.presionArterial}
               />
-
               <Input
                 name='frecuenciaCardiaca'
                 text='Frecuencia Cardiaca (xmin)'
                 type='text'
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.frecuenciaCardiaca}
               />
               <Input
                 name='frecuenciaRespiratoria'
                 text='Frecuencia Respiratoria (xmin)'
                 type='text'
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.frecuenciaRespiratoria}
               />
               <Input
                 name='temperatura'
                 text='Temperatura (°C)'
                 type='text'
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.temperatura}
               />
               <Input
                 name='peso'
                 text='Peso (kg)'
                 type='text'
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.peso}
               />
               <Input
                 name='estatura'
                 text='Estatura (m)'
                 type='text'
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.estatura}
               />
 
               <TextArea
@@ -196,7 +222,9 @@ const FormReceta = () => {
                 text='Alergias'
                 type='text'
                 numRows={2}
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.alergias}
               />
             </div>
 
@@ -206,14 +234,18 @@ const FormReceta = () => {
                 text='Diagnostico'
                 type='text'
                 numRows={3}
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.diagnostico}
               />
               <TextArea
                 name='tratamiento'
                 text='Tratamiento'
                 type='text'
                 numRows={15}
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.tratamiento}
               />
             </div>
 
@@ -222,7 +254,7 @@ const FormReceta = () => {
                 text='Guardar Receta'
                 icon={<AiFillAlipayCircle />}
                 type='submit'
-                disabled={!receta.diagnostico || !receta.tratamiento}
+                disabled={!formik.values.diagnostico}
               />
             </div>
           </form>

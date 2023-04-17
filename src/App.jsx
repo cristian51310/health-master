@@ -31,7 +31,8 @@ const App = () => {
     !loading && (
       <>
         <Routes>
-          <Route path='/' element={<Navigate to='/dashboard' />} />
+          <Route path='/' element={<Navigate to='/auth/login' />} />
+
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/calendar' element={<Calendar />} />
           <Route path='/profile' element={<Profile />} />

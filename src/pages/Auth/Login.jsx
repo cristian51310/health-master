@@ -1,44 +1,36 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Logo from '../../images/logo/logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineMail } from 'react-icons/ai'
 import Input from '../../components/Input'
 import { useMutation } from '@apollo/client'
 import { LOGIN } from '../../graphql/usuarios'
+import { useFormik } from 'formik'
 
 const Login = () => {
   const navigate = useNavigate()
-
-  const [usuario, setUsuario] = useState({
-    email: '',
-    password: ''
-  })
-
-  const handleChange = e => {
-    setUsuario({
-      ...usuario,
-      [e.target.name]: e.target.value
-    })
-  }
-
   const [login, { error }] = useMutation(LOGIN)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const { data } = await login({
-      variables: {
-        email: usuario.email,
-        password: usuario.password
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    onSubmit: async (values, { resetForm }) => {
+      const { data } = await login({
+        variables: {
+          email: values.email,
+          password: values.password
+        }
+      })
+      if (!error) {
+        window.localStorage.setItem('token', data.login)
+        navigate('/dashboard')
+      } else {
+        console.log('Credenciales invalidas')
       }
-    })
-    if (!error) {
-      console.log(data.login)
-      window.localStorage.setItem('token', data.login)
-      navigate('/')
-    } else {
-      console.log('Credenciales invalidas')
     }
-  }
+  })
 
   return (
 
@@ -54,14 +46,16 @@ const Login = () => {
               </h1>
             </div>
             <div className='w-full flex-1 mt-8 px-4'>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={formik.handleSubmit}>
                 <Input
                   name='email'
                   text='Email'
                   type='email'
                   autoComplete='off'
                   placeholder='Ingresa tu correo electronico'
-                  onChange={handleChange}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
                   icon={<AiOutlineMail />}
                 />
 
@@ -71,7 +65,9 @@ const Login = () => {
                   text='Password'
                   type='password'
                   placeholder='Ingresa tu contraseña'
-                  onChange={handleChange}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
                 />
 
                 <input

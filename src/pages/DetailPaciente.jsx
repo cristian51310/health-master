@@ -71,11 +71,7 @@ const DetailPaciente = () => {
               text='Eliminar'
               type='submit'
               onClick={() => {
-                deletePaciente({
-                  variables: {
-                    id: data.paciente._id
-                  }
-                })
+                deletePaciente({ variables: { id: data.paciente._id } })
                 navigate('/pacientes')
               }}
             />

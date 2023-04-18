@@ -11,28 +11,21 @@ const ViewPDF = ({ data, receta }) => {
   return (
     <Document>
       <Page size='A5' orientation='landscape'>
-        <View>
+        <View style={{ padding: '20rem', display: 'flex' }}>
+          <Text> {receta.doctor[0].nombre + ' ' + receta.doctor[0].apellidoPaterno + '' + receta.doctor[0].apellidoMaterno} </Text>
+          <Text> Cedula: {receta.doctor[0].cedula} </Text>
           <Text> {receta.createdAt} </Text>
-
-          <Text> {data.paciente.nombre} </Text>
-          <Text> {data.paciente.apellidoPaterno} </Text>
-          <Text> {data.paciente.apellidoMaterno} </Text>
+          <Text> {data.paciente.nombre + ' ' + data.paciente.apellidoPaterno + ' ' + data.paciente.apellidoMaterno} </Text>
           <Text> {data.paciente.fechaNacimiento} </Text>
-
+          <Text>Estatura: {receta.estatura} </Text>
+          <Text>Frecuencia Cardiaca: {receta.frecuenciaCardiaca} </Text>
+          <Text>Frecuencia Respiratoria {receta.frecuenciaRespiratoria} </Text>
+          <Text>Peso: {receta.peso} </Text>
+          <Text>Presion Arterial: {receta.presionArterial} </Text>
+          <Text>Temperatura: {receta.temperatura} </Text>
           <Text> {receta.alergias} </Text>
           <Text> {receta.diagnostico} </Text>
-          <Text> {receta.estatura} </Text>
-          <Text> {receta.frecuenciaCardiaca} </Text>
-          <Text> {receta.frecuenciaRespiratoria} </Text>
-          <Text> {receta.peso} </Text>
-          <Text> {receta.presionArterial} </Text>
-          <Text> {receta.temperatura} </Text>
           <Text> {receta.tratamiento} </Text>
-
-          <Text> {receta.doctor[0].nombre} </Text>
-          <Text> {receta.doctor[0].apellidoPaterno} </Text>
-          <Text> {receta.doctor[0].apellidoMaterno} </Text>
-          <Text> {receta.doctor[0].cedula} </Text>
         </View>
       </Page>
     </Document>

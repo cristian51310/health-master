@@ -34,7 +34,7 @@ const FormReceta = () => {
       temperatura: yup.string().required('Temperatura obligatorio'),
       peso: yup.string().required('Peso obligatorio'),
       estatura: yup.string().required('Estatura obligatoria'),
-      alergias: yup.date().required('Alergias obligatorias'),
+      alergias: yup.string().required('Alergias obligatorias'),
       diagnostico: yup.string().required('Diagnostico obligatorio'),
       tratamiento: yup.string().required('Tratamiento obligatorio')
     }),

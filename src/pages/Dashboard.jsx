@@ -1,11 +1,9 @@
 import React from 'react'
 import DefaultLayout from '../layout/DefaultLayout'
-import CardOne from '../components/CardOne'
 import UserOne from '../images/user/user-06.png'
 import jwtDecode from 'jwt-decode'
 import { useQuery } from '@apollo/client'
 import { GET_DOCTOR } from '../graphql/doctores'
-import { toast } from 'sonner'
 
 const Dashboard = () => {
   // obtener datos del doctor
@@ -22,16 +20,12 @@ const Dashboard = () => {
   return (
     <DefaultLayout>
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5'>
-        <div className='rounded-xl col-span-2 row-span-2 bg-gradient-to-tr from-teal-500 to-blue-400 w-full shadow-xl shadow-black/10'>
+        <div className='rounded-xl col-span-3 row-span-2 bg-gradient-to-tr from-teal-500 to-blue-400 w-full shadow-xl shadow-black/10'>
           <div className='col-span-2 flex gap-14 p-10 justify-center items-center h-full'>
             <p className='text-5xl text-white font-semibold font-satoshi '><span className=' font-normal'>Hola </span>{data.Doctor.nombre}</p>
             <img width={200} src={UserOne} alt='' />
           </div>
         </div>
-        <button onClick={() => { toast.success('Sesion cerrada', { description: 'Sesion cerrada con exito' }) }}>Hola</button>
-        <CardOne />
-        <CardOne />
-        <CardOne />
       </div>
     </DefaultLayout>
   )

@@ -1,11 +1,15 @@
 import React from 'react'
 
-const Input = ({ text, value, type, placeholder, name, icon, onChange, onBlur, limit, autoComplete, readonly }) => {
+const Input = ({ text, value, type, placeholder, name, icon, onChange, onBlur, limit, autoComplete, readonly, children }) => {
   return (
     <div className='mb-4.5'>
-      <label className='mb-2.5 block text-black  '>
-        {text}
-      </label>
+      <div className='flex items-center justify-between pl-2 py-1'>
+        <label className='block text-black text-md  '>
+          {text}
+        </label>
+        {children}
+      </div>
+
       <div className='relative'>
         <input
           autoComplete={autoComplete}

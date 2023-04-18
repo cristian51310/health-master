@@ -9,6 +9,8 @@ export const GET_ALL_PACIENTES = gql`
       apellidoPaterno
       apellidoMaterno
       fechaNacimiento
+      genero
+      fotoPerfil
     }
   }
 `
@@ -21,6 +23,7 @@ export const GET_PACIENTE = gql`
       apellidoPaterno
       apellidoMaterno
       fechaNacimiento
+      fotoPerfil
       receta {
         alergias
         diagnostico
@@ -58,13 +61,15 @@ export const CREATE_PACIENTE = gql`
     $apellidoPaterno: String!, 
     $apellidoMaterno: String!, 
     $fechaNacimiento: Date!, 
-    $genero: String!){
+    $genero: String!,
+    $fotoPerfil: String!){
       createPaciente(
         nombre: $nombre, 
         apellidoPaterno: $apellidoPaterno, 
         apellidoMaterno: $apellidoMaterno, 
         fechaNacimiento: $fechaNacimiento, 
-        genero: $genero) {
+        genero: $genero,
+        fotoPerfil: $fotoPerfil) {
         nombre
     }
   }

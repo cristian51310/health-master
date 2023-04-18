@@ -1,11 +1,14 @@
 import React from 'react'
 
-const TextArea = ({ text, value, type, placeholder, name, defaultValue, onChange, onBlur, limit, numRows }) => {
+const TextArea = ({ text, value, type, placeholder, name, defaultValue, onChange, onBlur, limit, numRows, children }) => {
   return (
     <div className='mb-4.5'>
-      <label className='mb-2.5 block text-black  '>
-        {text}
-      </label>
+      <div className='flex items-center justify-between pl-2 py-1'>
+        <label className='block text-black text-md  '>
+          {text}
+        </label>
+        {children}
+      </div>
       <div className='relative'>
         <textarea
           rows={numRows}

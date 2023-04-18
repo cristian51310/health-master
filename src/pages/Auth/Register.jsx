@@ -9,6 +9,8 @@ import { CREATE_DOCTOR } from '../../graphql/doctores.js'
 import { Button } from '../../components/Button'
 import { useFormik } from 'formik'
 import Select from 'react-select'
+import * as yup from 'yup'
+import { ErrorBadge, SuccesBadge, WarningBadge } from '../../components/ErrorBadge'
 
 const options = [
   { value: 'masculino', label: 'Masculino' },
@@ -26,7 +28,7 @@ const SignIn = () => {
       apellidoPaterno: '',
       apellidoMaterno: '',
       fechaNacimiento: '',
-      genero: '',
+      genero: 'masculino',
       curp: '',
       rfc: '',
       cedula: '',
@@ -34,7 +36,19 @@ const SignIn = () => {
       email: '',
       password: ''
     },
+    validationSchema: yup.object({
+      nombre: yup.string().required('Nombre obligatorio'),
+      apellidoPaterno: yup.string().required('Apellido obligatorio'),
+      apellidoMaterno: yup.string().required('Apellido obligatorio'),
+      fechaNacimiento: yup.date().required('Fecha obligatoria'),
+      curp: yup.string().required('Curp obligatoria'),
+      rfc: yup.string().required('RFC obligatorio'),
+      cedula: yup.string().required('Cedula obligatoria'),
+      email: yup.string().required('Email obligatorio').email('Ingresa un email valido'),
+      password: yup.string().required('Password Obligatorio').min(3, 'Password muy corto')
+    }),
     onSubmit: async (values, { resetForm }) => {
+      console.log(formik.values.genero)
       const { data } = await createDoctor({
         variables: {
           nombre: values.nombre,
@@ -85,7 +99,13 @@ const SignIn = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.nombre}
-              />
+              >
+                {formik.touched.nombre && formik.errors.nombre
+                  ? (<ErrorBadge errorMessage={formik.errors.nombre} />)
+                  : formik.touched.nombre && !formik.errors.nombre
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </Input>
 
               <Input
                 name='apellidoPaterno'
@@ -95,7 +115,13 @@ const SignIn = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.apellidoPaterno}
-              />
+              >
+                {formik.touched.apellidoPaterno && formik.errors.apellidoPaterno
+                  ? (<ErrorBadge errorMessage={formik.errors.apellidoPaterno} />)
+                  : formik.touched.apellidoPaterno && !formik.errors.apellidoPaterno
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </Input>
 
               <Input
                 name='apellidoMaterno'
@@ -105,7 +131,13 @@ const SignIn = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.apellidoMaterno}
-              />
+              >
+                {formik.touched.apellidoMaterno && formik.errors.apellidoMaterno
+                  ? (<ErrorBadge errorMessage={formik.errors.apellidoMaterno} />)
+                  : formik.touched.apellidoMaterno && !formik.errors.apellidoMaterno
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </Input>
 
               <Input
                 name='fechaNacimiento'
@@ -114,7 +146,13 @@ const SignIn = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.fechaNacimiento}
-              />
+              >
+                {formik.touched.fechaNacimiento && formik.errors.fechaNacimiento
+                  ? (<ErrorBadge errorMessage={formik.errors.fechaNacimiento} />)
+                  : formik.touched.fechaNacimiento && !formik.errors.fechaNacimiento
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </Input>
 
               <div>
                 <label className=' text-black'>Genero</label>
@@ -141,7 +179,13 @@ const SignIn = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.curp}
-              />
+              >
+                {formik.touched.curp && formik.errors.curp
+                  ? (<ErrorBadge errorMessage={formik.errors.curp} />)
+                  : formik.touched.curp && !formik.errors.curp
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </Input>
 
               <Input
                 name='rfc'
@@ -152,7 +196,13 @@ const SignIn = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.rfc}
-              />
+              >
+                {formik.touched.rfc && formik.errors.rfc
+                  ? (<ErrorBadge errorMessage={formik.errors.rfc} />)
+                  : formik.touched.rfc && !formik.errors.rfc
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </Input>
 
               <Input
                 name='cedula'
@@ -163,7 +213,13 @@ const SignIn = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.cedula}
-              />
+              >
+                {formik.touched.cedula && formik.errors.cedula
+                  ? (<ErrorBadge errorMessage={formik.errors.cedula} />)
+                  : formik.touched.cedula && !formik.errors.cedula
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </Input>
 
               <Input
                 name='email'
@@ -174,7 +230,13 @@ const SignIn = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
-              />
+              >
+                {formik.touched.email && formik.errors.email
+                  ? (<ErrorBadge errorMessage={formik.errors.email} />)
+                  : formik.touched.email && !formik.errors.email
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </Input>
 
               <Input
                 name='password'
@@ -185,13 +247,19 @@ const SignIn = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.password}
-              />
+              >
+                {formik.touched.password && formik.errors.password
+                  ? (<ErrorBadge errorMessage={formik.errors.password} />)
+                  : formik.touched.password && !formik.errors.password
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </Input>
 
-              <div className='flex mt-9'>
+              <div className='flex mt-3'>
                 <Button
                   text='Registrar Paciente'
                   type='submit'
-                  disabled={loading}
+                  disabled={formik.errors.nombre || formik.errors.apellidoPaterno || formik.errors.apellidoMaterno || formik.errors.fechaNacimiento || formik.errors.curp || formik.errors.rfc || formik.errors.cedula || formik.errors.email || formik.errors.password || loading || !formik.values.nombre || !formik.values.apellidoPaterno || !formik.values.apellidoMaterno || !formik.values.fechaNacimiento || !formik.values.curp || !formik.values.rfc || !formik.values.cedula || !formik.values.email || !formik.values.password}
                 />
               </div>
 

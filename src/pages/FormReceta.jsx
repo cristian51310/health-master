@@ -12,15 +12,17 @@ import jwtDecode from 'jwt-decode'
 import { FormatDate } from '../js/formatDate'
 import { useFormik } from 'formik'
 import Select from 'react-select'
+import * as yup from 'yup'
+import { ErrorBadge, SuccesBadge, WarningBadge } from '../components/ErrorBadge'
 
 const FormReceta = () => {
   const navigate = useNavigate()
 
   const formik = useFormik({
     initialValues: {
-      presionArterial: '',
-      frecuenciaCardiaca: '',
-      frecuenciaRespiratoria: '',
+      presionArterial: 'Na',
+      frecuenciaCardiaca: 'Na',
+      frecuenciaRespiratoria: 'Na',
       temperatura: '',
       peso: '',
       estatura: '',
@@ -28,6 +30,14 @@ const FormReceta = () => {
       diagnostico: '',
       tratamiento: ''
     },
+    validationSchema: yup.object({
+      temperatura: yup.string().required('Temperatura obligatorio'),
+      peso: yup.string().required('Peso obligatorio'),
+      estatura: yup.string().required('Estatura obligatoria'),
+      alergias: yup.date().required('Alergias obligatorias'),
+      diagnostico: yup.string().required('Diagnostico obligatorio'),
+      tratamiento: yup.string().required('Tratamiento obligatorio')
+    }),
     onSubmit: async (values, { resetForm }) => {
       await createReceta({
         variables: {
@@ -113,19 +123,6 @@ const FormReceta = () => {
               <p className=' text-right mr-3 mb-3 mt-3'>Fecha: {fecha}</p>
             </div>
 
-            <select
-              id='patient'
-              className='col-span-12 my-4 mt-5 w-full rounded-xl border-[2.5px] border-stroke bg-transparent py-4 px-5 font-medium outline-none transition focus:border-primary active:border-primary'
-              name='pacienteId'
-              value={selectedPatient}
-              onChange={(e) => setSelectedPatient(e.target.value)}
-            >
-              <option value=''>Selecciona un paciente</option>
-              {patients.map(patient => (
-                <option key={patient._id} value={patient._id}>{patient.nombre + ' ' + patient.apellidoPaterno + ' ' + patient.apellidoMaterno}</option>
-              ))}
-            </select>
-
             <div className='col-span-12 mb-5'>
               <label className=' text-black'>Selecciona un paciente:</label>
               <Select
@@ -199,7 +196,14 @@ const FormReceta = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.temperatura}
-              />
+              >
+                {formik.touched.temperatura && formik.errors.temperatura
+                  ? (<ErrorBadge errorMessage={formik.errors.temperatura} />)
+                  : formik.touched.temperatura && !formik.errors.temperatura
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </Input>
+
               <Input
                 name='peso'
                 text='Peso (kg)'
@@ -207,7 +211,14 @@ const FormReceta = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.peso}
-              />
+              >
+                {formik.touched.peso && formik.errors.peso
+                  ? (<ErrorBadge errorMessage={formik.errors.peso} />)
+                  : formik.touched.peso && !formik.errors.peso
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </Input>
+
               <Input
                 name='estatura'
                 text='Estatura (m)'
@@ -215,8 +226,17 @@ const FormReceta = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.estatura}
-              />
+              >
+                {formik.touched.estatura && formik.errors.estatura
+                  ? (<ErrorBadge errorMessage={formik.errors.estatura} />)
+                  : formik.touched.estatura && !formik.errors.estatura
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </Input>
 
+            </div>
+
+            <div className='col-span-8'>
               <TextArea
                 name='alergias'
                 text='Alergias'
@@ -225,10 +245,14 @@ const FormReceta = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.alergias}
-              />
-            </div>
+              >
+                {formik.touched.alergias && formik.errors.alergias
+                  ? (<ErrorBadge errorMessage={formik.errors.alergias} />)
+                  : formik.touched.alergias && !formik.errors.alergias
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </TextArea>
 
-            <div className='col-span-8'>
               <TextArea
                 name='diagnostico'
                 text='Diagnostico'
@@ -237,7 +261,14 @@ const FormReceta = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.diagnostico}
-              />
+              >
+                {formik.touched.diagnostico && formik.errors.diagnostico
+                  ? (<ErrorBadge errorMessage={formik.errors.diagnostico} />)
+                  : formik.touched.diagnostico && !formik.errors.diagnostico
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </TextArea>
+
               <TextArea
                 name='tratamiento'
                 text='Tratamiento'
@@ -246,7 +277,13 @@ const FormReceta = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.tratamiento}
-              />
+              >
+                {formik.touched.tratamiento && formik.errors.tratamiento
+                  ? (<ErrorBadge errorMessage={formik.errors.tratamiento} />)
+                  : formik.touched.tratamiento && !formik.errors.tratamiento
+                    ? (<SuccesBadge />)
+                    : (<WarningBadge />)}
+              </TextArea>
             </div>
 
             <div className='col-span-12'>

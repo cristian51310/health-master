@@ -6,6 +6,8 @@ import Input from '../../components/Input'
 import { useMutation } from '@apollo/client'
 import { LOGIN } from '../../graphql/usuarios'
 import { useFormik } from 'formik'
+import * as yup from 'yup'
+import { ErrorBadge, SuccesBadge, WarningBadge } from '../../components/ErrorBadge'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -16,6 +18,10 @@ const Login = () => {
       email: '',
       password: ''
     },
+    validationSchema: yup.object({
+      email: yup.string().required('Email obligatorio').email('Ingresa un email valido'),
+      password: yup.string().required('Password Obligatorio').min(3, 'Password muy corto')
+    }),
     onSubmit: async (values, { resetForm }) => {
       const { data } = await login({
         variables: {
@@ -57,7 +63,13 @@ const Login = () => {
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
                   icon={<AiOutlineMail />}
-                />
+                >
+                  {formik.touched.email && formik.errors.email
+                    ? (<ErrorBadge errorMessage={formik.errors.email} />)
+                    : formik.touched.email && !formik.errors.email
+                      ? (<SuccesBadge />)
+                      : (<WarningBadge />)}
+                </Input>
 
                 <Input
                   name='password'
@@ -68,12 +80,19 @@ const Login = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
-                />
+                >
+                  {formik.touched.password && formik.errors.password
+                    ? (<ErrorBadge errorMessage={formik.errors.password} />)
+                    : formik.touched.password && !formik.errors.password
+                      ? (<SuccesBadge />)
+                      : (<WarningBadge />)}
+                </Input>
 
                 <input
                   type='submit'
                   value='Iniciar Sesion'
-                  className='w-full mt-4 cursor-pointer rounded-xl border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90'
+                  disabled={formik.errors.email || formik.errors.password || !formik.values.email || !formik.values.password}
+                  className='w-full mt-4 cursor-pointer rounded-xl border border-primary bg-primary p-4 disabled:border-gray-600 disabled:bg-gray-500 text-white transition hover:bg-opacity-90'
                 />
 
                 <div className='mt-6 text-center'>

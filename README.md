@@ -22,7 +22,7 @@
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/cristian
+git clone https://github.com/cristian51310/health-master.git
 ```
 
 ### 2. Modificar la conexion a la BD
@@ -35,7 +35,13 @@ health-master
     └── src
 ```
 
-### 3. Iniciar el servidor
+### 3. Instala los paquetes
+- Instala los paquetes en las carpetas raiz y server
+```bash
+npm install
+```
+
+### 4. Iniciar el servidor
 - navega a la carpeta server
 ```bash
 cd server
@@ -45,7 +51,7 @@ cd server
 npm run dev
 ```
 
-### 4. Iniciar el cliente
+### 5. Iniciar el cliente
 - Ubicate en la carpeta raiz e inicia el servidor
 ```bash
 npm run dev

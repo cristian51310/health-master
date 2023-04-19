@@ -30,21 +30,21 @@ git clone https://github.com/cristian51310/health-master.git
   ```
 health-master
     └── public
-    └── server
+    └── backend
         └── db.js
     └── src
 ```
 
 ### 3. Instala los paquetes
-- Instala los paquetes en las carpetas raiz y server
+- Instala los paquetes en las carpetas raiz y backend
 ```bash
 npm install
 ```
 
 ### 4. Iniciar los servidores
-- navega a la carpeta server
+- navega a la carpeta backend
 ```bash
-cd server
+cd backend
 ```
 - inicia el servidor
 ```bash

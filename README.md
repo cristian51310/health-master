@@ -41,7 +41,7 @@ health-master
 npm install
 ```
 
-### 4. Iniciar el servidor
+### 4. Iniciar los servidores
 - navega a la carpeta server
 ```bash
 cd server
